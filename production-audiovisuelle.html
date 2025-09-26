@@ -1,0 +1,954 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galerie des productions audiovisuelles de la DIRPA">
+    <title>Production Audiovisuelle - DIRPA</title>
+    
+    <link rel="stylesheet" href="pro3-sophistique.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Styles spécifiques à la galerie */
+        .audiovisuel-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .audiovisuel-badge {
+            display: inline-block;
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .audiovisuel-titre {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .filters-section {
+            background: var(--background-color);
+            padding: 40px 0;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .gallery-section {
+            padding: 60px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-info {
+            padding: 20px;
+        }
+
+        .image-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .load-more-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .load-more-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-image {
+            width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lightbox-info {
+            padding: 20px;
+            background: white;
+        }
+
+        .lightbox-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .lightbox-info p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .lightbox-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .lightbox-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .download-btn, .close-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .download-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .close-btn {
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .close-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+
+        .nav-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .lightbox-content {
+                max-width: 95%;
+                max-height: 95%;
+            }
+            
+            .lightbox-nav {
+                padding: 0 10px;
+            }
+            
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .lightbox-actions {
+                flex-direction: column;
+            }
+        }
+        /* Styles pour l'animation du chargement */
+.gallery-item {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Animation pour les nouvelles images */
+.gallery-item.fade-in {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Style pour le bouton Charger plus */
+.load-more-btn {
+    transition: all 0.3s ease;
+}
+
+.load-more-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.load-more-btn.loading {
+    position: relative;
+    color: transparent;
+}
+
+.load-more-btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Message "Toutes les images chargées" */
+.all-loaded-message {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-light);
+    font-style: italic;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+}
+
+.all-loaded-message i {
+    color: var(--secondary-color);
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-sophistique">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-info">
+                    <span><i class="fas fa-phone"></i> +221 33 849 00 00</span>
+                    <span><i class="fas fa-envelope"></i> contact@dirpa.sn</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Avenue des Jambaares, Dakar Plateau</span>
+                </div>
+                <div class="header-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="header-main">
+            <div class="container">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <a href="pro3.html" class="logo-link">
+                            <img src="logo-pays.png" alt="République du Sénégal" class="logo-pays">
+                            <div class="logo-main">
+                                <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
+                                <div class="logo-text">
+                                    <span class="logo-title">DIRPA</span>
+                                    <span class="logo-subtitle">Forces Armées Sénégalaises</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="pro3.html" class="nav-link">
+                                <i class="fas fa-home"></i> Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="biographie-directeur.html" class="nav-link">
+                                <i class="fas fa-user-tie"></i> Directeur
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="production-audiovisuelle.html" class="nav-link active">
+                                <i class="fas fa-video"></i> Production Audiovisuelle
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-newspaper"></i> Médias
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="nav-actions">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="Rechercher...">
+                            <button class="search-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                        <button class="mobile-toggle" id="mobileToggle">
+                            <span></span><span></span><span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="audiovisuel-hero">
+        <div class="container">
+            <div class="audiovisuel-badge">Division Production Audiovisuelle</div>
+            <h1 class="audiovisuel-titre">Galerie des Productions</h1>
+            <p class="audiovisuel-sous-titre">Images exclusives des activités des Forces Armées Sénégalaises</p>
+        </div>
+    </section>
+
+    <!-- Filtres -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Toutes</button>
+                <button class="filter-btn" data-filter="operations">Opérations</button>
+                <button class="filter-btn" data-filter="ceremonies">Cérémonies</button>
+                <button class="filter-btn" data-filter="entrainement">Entraînement</button>
+                <button class="filter-btn" data-filter="equipement">Équipement</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerie -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 30px;">
+                Galerie d'Images
+            </h2>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Images chargées par JavaScript -->
+            </div>
+
+            <div class="load-more-container">
+                <button id="loadMore" class="load-more-btn">
+                    <i class="fas fa-plus"></i> Charger plus d'images
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-nav">
+                <button class="nav-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+            
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDescription"></p>
+                
+                <div class="lightbox-meta">
+                    <span id="lightboxCategory"></span>
+                    <span id="lightboxDate"></span>
+                </div>
+                
+                <div class="lightbox-actions">
+                    <button class="download-btn" id="downloadBtn">
+                        <i class="fas fa-download"></i> Télécharger l'image
+                    </button>
+                    <button class="close-btn" id="closeBtn">
+                        <i class="fas fa-times"></i> Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-sophistique">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
+                        <div class="footer-logo-text">
+                            <h3>DIRPA</h3>
+                            <span>Production Audiovisuelle</span>
+                        </div>
+                    </div>
+                    <p>Division dédiée à la capture d'images des Forces Armées.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> production@dirpa.sn</p>
+                    <p><i class="fas fa-phone"></i> +221 33 849 00 20</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données des images avec URLs de téléchargement
+        const imagesData = [
+            {
+                id: 1,
+                title: "Cérémonie de prise de commandement",
+                description: "Prise de commandement de la Zone Militaire N°4 par le Colonel Simon Sarr en présence du CEMGA",
+                category: "ceremonies",
+                date: "15 Mars 2024",
+                image: "MEDIA/ceremonie-commandement.jpg",
+                downloadUrl: "MEDIA/ceremonie-commandement.jpg",
+                photographer: "Sgt. M. Ndiaye"
+            },
+            {
+                id: 2,
+                title: "Exercice militaire conjoint",
+                description: "Exercice d'entraînement des forces spéciales en zone désertique - Préparation opérationnelle",
+                category: "entrainement",
+                date: "22 Février 2024", 
+                image: "MEDIA/exercice-militaire.jpg",
+                downloadUrl: "MEDIA/exercice-militaire.jpg",
+                photographer: "Adj. P. Diop"
+            },
+            {
+                id: 3,
+                title: "Visite du CEMGA en zone frontalière",
+                description: "Le Général Mbaye Cissé lors de sa visite d'inspection des troupes déployées en zone frontalière",
+                category: "operations",
+                date: "10 Janvier 2024",
+                image: "MEDIA/visite-cemga.jpg",
+                downloadUrl: "MEDIA/visite-cemga.jpg",
+                photographer: "Cpl. A. Fall"
+            },
+            {
+                id: 4,
+                title: "Nouveaux équipements de la Marine",
+                description: "Présentation des nouvelles embarcations rapides de la Marine Sénégalaise - Modernisation de la flotte",
+                category: "equipement",
+                date: "5 Décembre 2023",
+                image: "MEDIA/equipement-marine.jpg",
+                downloadUrl: "MEDIA/equipement-marine.jpg",
+                photographer: "Sgt. K. Sarr"
+            },
+            {
+                id: 5,
+                title: "Coopération militaire internationale",
+                description: "Exercice conjoint avec les forces armées partenaires dans le cadre de la coopération régionale",
+                category: "operations",
+                date: "18 Novembre 2023",
+                image: "MEDIA/cooperation-internationale.jpg",
+                downloadUrl: "MEDIA/cooperation-internationale.jpg",
+                photographer: "Lt. J. Diouf"
+            },
+            {
+                id: 6,
+                title: "Cérémonie de remise de décorations",
+                description: "Remise de médailles pour actes de bravoure exceptionnels lors d'opérations de sécurisation",
+                category: "ceremonies",
+                date: "30 Octobre 2023",
+                image: "MEDIA/remise-decorations.jpg",
+                downloadUrl: "MEDIA/remise-decorations.jpg",
+                photographer: "Sgt. M. Ndiaye"
+            },
+            {
+                id: 7,
+                title: "Entraînement des forces aéroportées",
+                description: "Exercice de saut en parachute des forces spéciales aéroportées - Préparation aux interventions rapides",
+                category: "entrainement",
+                date: "12 Septembre 2023",
+                image: "MEDIA/entrainement-aeroporte.jpg",
+                downloadUrl: "MEDIA/entrainement-aeroporte.jpg",
+                photographer: "Adj. P. Diop"
+            },
+            {
+                id: 8,
+                title: "Opération de sécurisation frontalière",
+                description: "Patrouille des forces armées en zone frontalière dans le cadre des opérations de sécurisation",
+                category: "operations",
+                date: "25 Août 2023",
+                image: "MEDIA/operation-frontaliere.jpg",
+                downloadUrl: "MEDIA/operation-frontaliere.jpg",
+                photographer: "Cpl. A. Fall"
+            },
+             {
+                id: 8,
+                title: "Opération de sécurisation frontalière",
+                description: "Patrouille des forces armées en zone frontalière dans le cadre des opérations de sécurisation",
+                category: "operations",
+                date: "25 Août 2023",
+                image: "MEDIA/operation-frontaliere.jpg",
+                downloadUrl: "MEDIA/operation-frontaliere.jpg",
+                photographer: "Cpl. A. Fall"
+            },
+             {
+                id: 8,
+                title: "Opération de sécurisation frontalière",
+                description: "Patrouille des forces armées en zone frontalière dans le cadre des opérations de sécurisation",
+                category: "operations",
+                date: "25 Août 2023",
+                image: "MEDIA/operation-frontaliere.jpg",
+                downloadUrl: "MEDIA/operation-frontaliere.jpg",
+                photographer: "Cpl. A. Fall"
+            },
+             {
+                id: 8,
+                title: "Opération de sécurisation frontalière",
+                description: "Patrouille des forces armées en zone frontalière dans le cadre des opérations de sécurisation",
+                category: "operations",
+                date: "25 Août 2023",
+                image: "MEDIA/operation-frontaliere.jpg",
+                downloadUrl: "MEDIA/operation-frontaliere.jpg",
+                photographer: "Cpl. A. Fall"
+            },
+             {
+                id: 8,
+                title: "Opération de sécurisation frontalière",
+                description: "Patrouille des forces armées en zone frontalière dans le cadre des opérations de sécurisation",
+                category: "operations",
+                date: "25 Août 2023",
+                image: "MEDIA/operation-frontaliere.jpg",
+                downloadUrl: "MEDIA/operation-frontaliere.jpg",
+                photographer: "Cpl. A. Fall"
+            }
+            
+        ];
+
+         // Dans votre fichier JavaScript existant, remplacez la classe GalleryWithLightbox par ceci :
+
+class GalleryWithLightbox {
+    constructor() {
+        this.images = imagesData;
+        this.currentFilter = 'all';
+        this.currentImageIndex = 0;
+        this.filteredImages = [];
+        this.currentPage = 1;
+        this.imagesPerPage = 10; // Nombre d'images par page
+        this.init();
+    }
+
+    init() {
+        this.filteredImages = [...this.images];
+        this.renderGallery();
+        this.setupFilters();
+        this.setupLightbox();
+        this.setupLoadMore();
+        this.updateLoadMoreButton();
+        console.log('Galerie avec pagination initialisée');
+    }
+
+    renderGallery() {
+        const galleryGrid = document.getElementById('galleryGrid');
+        
+        this.filteredImages = this.currentFilter === 'all' 
+            ? this.images 
+            : this.images.filter(img => img.category === this.currentFilter);
+
+        // Calculer les images à afficher pour la page actuelle
+        const startIndex = 0; // Toujours tout afficher depuis le début
+        const endIndex = this.currentPage * this.imagesPerPage;
+        const imagesToShow = this.filteredImages.slice(startIndex, endIndex);
+
+        galleryGrid.innerHTML = imagesToShow.map((image, index) => `
+            <div class="gallery-item" data-index="${index}">
+                <img src="${image.image}" alt="${image.title}" 
+                     onerror="this.src='https://via.placeholder.com/300x250/1a365d/ffffff?text=Image+Non+Disponible'">
+                <div class="image-info">
+                    <h3>${image.title}</h3>
+                    <p>${image.description.substring(0, 100)}...</p>
+                    <div class="image-meta">
+                        <span>${this.getCategoryLabel(image.category)} • ${image.date}</span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        this.updateLoadMoreButton();
+    }
+
+    setupLoadMore() {
+        const loadMoreBtn = document.getElementById('loadMore');
+        
+        loadMoreBtn.addEventListener('click', () => {
+            this.loadMoreImages();
+        });
+    }
+
+    loadMoreImages() {
+        this.currentPage++;
+        this.renderGallery();
+        
+        // Animation smooth pour le nouveau contenu
+        this.animateNewImages();
+    }
+
+    animateNewImages() {
+        const galleryGrid = document.getElementById('galleryGrid');
+        const newImages = galleryGrid.querySelectorAll('.gallery-item');
+        
+        // Animer seulement les nouvelles images
+        newImages.forEach((item, index) => {
+            if (index >= (this.currentPage - 1) * this.imagesPerPage) {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    item.style.transition = 'all 0.6s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, 100 * index);
+            }
+        });
+    }
+
+    updateLoadMoreButton() {
+        const loadMoreBtn = document.getElementById('loadMore');
+        const totalImages = this.filteredImages.length;
+        const displayedImages = this.currentPage * this.imagesPerPage;
+        
+        if (displayedImages >= totalImages) {
+            loadMoreBtn.style.display = 'none';
+            
+            // Afficher un message si toutes les images sont chargées
+            this.showAllLoadedMessage();
+        } else {
+            loadMoreBtn.style.display = 'block';
+            loadMoreBtn.innerHTML = `
+                <i class="fas fa-plus"></i> 
+                Charger plus d'images 
+                (${displayedImages}/${totalImages})
+            `;
+        }
+    }
+
+    showAllLoadedMessage() {
+        // Vérifier si le message existe déjà
+        if (document.getElementById('allLoadedMessage')) return;
+        
+        const message = document.createElement('div');
+        message.id = 'allLoadedMessage';
+        message.style.cssText = `
+            text-align: center;
+            padding: 20px;
+            color: var(--text-light);
+            font-style: italic;
+            border-top: 1px solid var(--border-color);
+            margin-top: 30px;
+        `;
+        message.innerHTML = `
+            <i class="fas fa-check-circle" style="color: var(--secondary-color); margin-right: 10px;"></i>
+            Toutes les images sont chargées
+        `;
+        
+        document.querySelector('.gallery-section .container').appendChild(message);
+    }
+
+    // Méthode pour réinitialiser la pagination quand on change de filtre
+    setupFilters() {
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                this.currentFilter = btn.dataset.filter;
+                this.currentPage = 1; // Réinitialiser à la première page
+                this.renderGallery();
+                
+                // Supprimer le message "Toutes les images chargées"
+                const existingMessage = document.getElementById('allLoadedMessage');
+                if (existingMessage) {
+                    existingMessage.remove();
+                }
+            });
+        });
+    }
+
+
+            setupLightbox() {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImage = document.getElementById('lightboxImage');
+                const lightboxTitle = document.getElementById('lightboxTitle');
+                const lightboxDescription = document.getElementById('lightboxDescription');
+                const lightboxCategory = document.getElementById('lightboxCategory');
+                const lightboxDate = document.getElementById('lightboxDate');
+                const downloadBtn = document.getElementById('downloadBtn');
+                const closeBtn = document.getElementById('closeBtn');
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+
+                // Ouvrir lightbox au clic sur une image
+                document.addEventListener('click', (e) => {
+                    const galleryItem = e.target.closest('.gallery-item');
+                    if (galleryItem) {
+                        this.currentImageIndex = parseInt(galleryItem.dataset.index);
+                        this.openLightbox();
+                    }
+                });
+
+                // Navigation lightbox
+                prevBtn.addEventListener('click', () => this.navigateLightbox(-1));
+                nextBtn.addEventListener('click', () => this.navigateLightbox(1));
+
+                // Téléchargement
+                downloadBtn.addEventListener('click', () => this.downloadImage());
+
+                // Fermeture
+                closeBtn.addEventListener('click', () => this.closeLightbox());
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) this.closeLightbox();
+                });
+
+                // Navigation clavier
+                document.addEventListener('keydown', (e) => {
+                    if (!lightbox.classList.contains('active')) return;
+                    
+                    switch(e.key) {
+                        case 'Escape':
+                            this.closeLightbox();
+                            break;
+                        case 'ArrowLeft':
+                            this.navigateLightbox(-1);
+                            break;
+                        case 'ArrowRight':
+                            this.navigateLightbox(1);
+                            break;
+                    }
+                });
+            }
+
+            openLightbox() {
+                const lightbox = document.getElementById('lightbox');
+                const currentImage = this.filteredImages[this.currentImageIndex];
+                
+                if (currentImage) {
+                    document.getElementById('lightboxImage').src = currentImage.image;
+                    document.getElementById('lightboxTitle').textContent = currentImage.title;
+                    document.getElementById('lightboxDescription').textContent = currentImage.description;
+                    document.getElementById('lightboxCategory').textContent = this.getCategoryLabel(currentImage.category);
+                    document.getElementById('lightboxDate').textContent = currentImage.date;
+                    
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            closeLightbox() {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            navigateLightbox(direction) {
+                this.currentImageIndex += direction;
+                
+                if (this.currentImageIndex < 0) {
+                    this.currentImageIndex = this.filteredImages.length - 1;
+                } else if (this.currentImageIndex >= this.filteredImages.length) {
+                    this.currentImageIndex = 0;
+                }
+                
+                this.openLightbox();
+            }
+
+            downloadImage() {
+                const currentImage = this.filteredImages[this.currentImageIndex];
+                if (currentImage && currentImage.downloadUrl) {
+                    // Créer un lien de téléchargement
+                    const link = document.createElement('a');
+                    link.href = currentImage.downloadUrl;
+                    link.download = this.generateFileName(currentImage.title);
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Message de confirmation
+                    this.showDownloadMessage(currentImage.title);
+                }
+            }
+
+            generateFileName(title) {
+                // Nettoyer le titre pour créer un nom de fichier valide
+                return title
+                    .toLowerCase()
+                    .replace(/[^a-z0-9]/g, '_')
+                    .replace(/_+/g, '_')
+                    .replace(/^_|_$/g, '') + '.jpg';
+            }
+
+            showDownloadMessage(title) {
+                // Créer une notification de téléchargement
+                const message = document.createElement('div');
+                message.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--primary-color);
+                    color: white;
+                    padding: 15px 20px;
+                    border-radius: 10px;
+                    z-index: 1001;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                `;
+                message.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    Téléchargement de "${title}" démarré
+                `;
+                
+                document.body.appendChild(message);
+                
+                setTimeout(() => {
+                    message.remove();
+                }, 3000);
+            }
+
+            getCategoryLabel(category) {
+                const labels = {
+                    'operations': '📊 Opérations',
+                    'ceremonies': '🎖️ Cérémonies', 
+                    'entrainement': '💪 Entraînement',
+                    'equipement': '⚙️ Équipement'
+                };
+                return labels[category] || category;
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            new GalleryWithLightbox();
+            
+            // Gestion du bouton "Charger plus"
+            document.getElementById('loadMore').addEventListener('click', function() {
+                alert('Fonctionnalité "Charger plus" - À implémenter avec plus d\'images');
+            });
+
+            // Gestion du menu mobile
+            document.getElementById('mobileToggle').addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.toggle('active');
+                this.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

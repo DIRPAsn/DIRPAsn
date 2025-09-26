@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Imprimerie de la DIRPA - Supports imprimés des Forces Armées Sénégalaises">
+    <title>Imprimerie - DIRPA</title>
+    
+    <link rel="stylesheet" href="pro3-sophistique.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Styles spécifiques à l'imprimerie */
+        .imprimerie-hero {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .imprimerie-badge {
+            display: inline-block;
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .imprimerie-titre {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .imprimerie-sous-titre {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Section principale */
+        .imprimerie-main {
+            padding: 80px 0;
+            background: var(--background-color);
+        }
+
+        /* Cartes de services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Galerie des réalisations */
+        .realisations-section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .galerie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .realisation-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .realisation-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .realisation-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .realisation-info {
+            padding: 20px;
+        }
+
+        .realisation-titre {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .realisation-description {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Section équipements */
+        .equipements-section {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin: 60px 0;
+        }
+
+        .equipements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .equipement-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .equipement-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .equipement-nom {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .equipement-specs {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Section contact */
+        .contact-section {
+            margin: 60px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            color: var(--text-color);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--background-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .demande-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .demande-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+            outline: none;
+        }
+
+        .btn-submit {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .imprimerie-titre {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .galerie-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .equipements-section {
+                padding: 40px 20px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info, .demande-section {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .imprimerie-titre {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .galerie-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-sophistique">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-info">
+                    <span><i class="fas fa-phone"></i> +221 33 849 00 00</span>
+                    <span><i class="fas fa-envelope"></i> contact@dirpa.sn</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Avenue des Jambaares, Dakar Plateau</span>
+                </div>
+                <div class="header-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="header-main">
+            <div class="container">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <a href="pro3.html" class="logo-link">
+                            <img src="logo-pays.png" alt="République du Sénégal" class="logo-pays">
+                            <div class="logo-main">
+                                <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
+                                <div class="logo-text">
+                                    <span class="logo-title">DIRPA</span>
+                                    <span class="logo-subtitle">Forces Armées Sénégalaises</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="pro3.html" class="nav-link">
+                                <i class="fas fa-home"></i> Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="biographie-directeur.html" class="nav-link">
+                                <i class="fas fa-user-tie"></i> Directeur
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="production-audiovisuelle.html" class="nav-link">
+                                <i class="fas fa-video"></i> Production Audiovisuelle
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="medias-strategies.html" class="nav-link">
+                                <i class="fas fa-newspaper"></i> Médias & Stratégies
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="section-digitale.html" class="nav-link">
+                                <i class="fas fa-laptop-code"></i> Section Digitale
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="imprimerie.html" class="nav-link active">
+                                <i class="fas fa-print"></i> Imprimerie
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="nav-actions">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="Rechercher...">
+                            <button class="search-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                        <button class="mobile-toggle" id="mobileToggle">
+                            <span></span><span></span><span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="imprimerie-hero">
+        <div class="container">
+            <div class="imprimerie-badge">Support Imprimé</div>
+            <h1 class="imprimerie-titre">Imprimerie DIRPA</h1>
+            <p class="imprimerie-sous-titre">
+                Centre d'impression officiel des Forces Armées Sénégalaises. 
+                Production de documents stratégiques, supports de communication 
+                et publications institutionnelles.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contenu Principal -->
+    <main class="imprimerie-main">
+        <div class="container">
+            <!-- Section Services -->
+            <section>
+                <h2 class="section-title">Nos Services d'Impression</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="service-title">Documents Officiels</h3>
+                        <p class="service-description">
+                            Impression de documents stratégiques, rapports officiels, 
+                            circulaires et instructions militaires.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <h3 class="service-title">Publications Internes</h3>
+                        <p class="service-description">
+                            Journaux internes, magazines institutionnels et bulletins 
+                            d'information des Forces Armées.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3 class="service-title">Cartes & Badges</h3>
+                        <p class="service-description">
+                            Production de cartes d'identité militaire, badges d'accès 
+                            et cartes d'accréditation sécurisées.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="service-title">Manuels & Guides</h3>
+                        <p class="service-description">
+                            Impression de manuels de procédures, guides techniques 
+                            et documentation opérationnelle.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <h3 class="service-title">Supports Événementiels</h3>
+                        <p class="service-description">
+                            Affiches, invitations, programmes de cérémonies et supports 
+                            de communication événementielle.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="service-title">Documents Sécurisés</h3>
+                        <p class="service-description">
+                            Impression de documents confidentiels avec systèmes 
+                            de sécurité et authentification.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Réalisations -->
+            <section class="realisations-section">
+                <h2 class="section-title">Nos Réalisations</h2>
+                <div class="galerie-grid">
+                    <div class="realisation-item">
+                        <img src="MEDIA/impression-document.jpg" alt="Document officiel" class="realisation-image"
+                             onerror="this.src='https://via.placeholder.com/300x200/1a365d/ffffff?text=Document'">
+                        <div class="realisation-info">
+                            <h4 class="realisation-titre">Rapports Annuels</h4>
+                            <p class="realisation-description">Édition des rapports d'activité des armées</p>
+                        </div>
+                    </div>
+
+                    <div class="realisation-item">
+                        <img src="MEDIA/impression-carte.jpg" alt="Cartes d'identité" class="realisation-image"
+                             onerror="this.src='https://via.placeholder.com/300x200/1a365d/ffffff?text=Cartes'">
+                        <div class="realisation-info">
+                            <h4 class="realisation-titre">Cartes Militaires</h4>
+                            <p class="realisation-description">Production de cartes d'identité sécurisées</p>
+                        </div>
+                    </div>
+
+                    <div class="realisation-item">
+                        <img src="MEDIA/impression-affiche.jpg" alt="Affiches" class="realisation-image"
+                             onerror="this.src='https://via.placeholder.com/300x200/1a365d/ffffff?text=Affiches'">
+                        <div class="realisation-info">
+                            <h4 class="realisation-titre">Affiches Institutionnelles</h4>
+                            <p class="realisation-description">Supports de communication visuelle</p>
+                        </div>
+                    </div>
+
+                    <div class="realisation-item">
+                        <img src="MEDIA/impression-manuel.jpg" alt="Manuels" class="realisation-image"
+                             onerror="this.src='https://via.placeholder.com/300x200/1a365d/ffffff?text=Manuels'">
+                        <div class="realisation-info">
+                            <h4 class="realisation-titre">Manuels Techniques</h4>
+                            <p class="realisation-description">Documentation opérationnelle</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Équipements -->
+            <section class="equipements-section">
+                <h2 class="section-title">Nos Équipements</h2>
+                <div class="equipements-grid">
+                    <div class="equipement-item">
+                        <div class="equipement-icon">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <h3 class="equipement-nom">Presse Offset</h3>
+                        <p class="equipement-specs">4 couleurs - Format A3+</p>
+                    </div>
+
+                    <div class="equipement-item">
+                        <div class="equipement-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h3 class="equipement-nom">Imprimante Numérique</h3>
+                        <p class="equipement-specs">Haute définition - Couleur</p>
+                    </div>
+
+                    <div class="equipement-item">
+                        <div class="equipement-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <h3 class="equipement-nom">Machine à Cartes</h3>
+                        <p class="equipement-specs">Production sécurisée</p>
+                    </div>
+
+                    <div class="equipement-item">
+                        <div class="equipement-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <h3 class="equipement-nom">Massicot Industriel</h3>
+                        <p class="equipement-specs">Précision au millimètre</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Contact -->
+            <section class="contact-section">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Contactez l'Imprimerie</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <strong>Téléphone</strong><br>
+                                +221 33 849 00 50
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong>Email</strong><br>
+                                imprimerie@dirpa.sn
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <strong>Adresse</strong><br>
+                                Bâtiment Imprimerie, DIRPA<br>
+                                Avenue des Jambaares<br>
+                                Dakar Plateau
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <strong>Horaires</strong><br>
+                                Lundi - Jeudi: 7h30 - 16h30<br>
+                                Vendredi: 7h30 - 13h00
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <strong>Responsable</strong><br>
+                                Adjudant-Chef M. Sarr
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="demande-section">
+                        <h3>Demande d'Impression</h3>
+                        <form id="demandeForm">
+                            <div class="form-group">
+                                <label for="service">Type de service</label>
+                                <select id="service" class="form-control" required>
+                                    <option value="">Sélectionnez un service</option>
+                                    <option value="documents">Documents officiels</option>
+                                    <option value="publications">Publications internes</option>
+                                    <option value="cartes">Cartes et badges</option>
+                                    <option value="manuels">Manuels et guides</option>
+                                    <option value="evenementiel">Supports événementiels</option>
+                                    <option value="securise">Documents sécurisés</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="quantite">Quantité approximative</label>
+                                <input type="number" id="quantite" class="form-control" 
+                                       placeholder="Ex: 100, 500, 1000" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="delai">Délai souhaité</label>
+                                <select id="delai" class="form-control" required>
+                                    <option value="">Sélectionnez un délai</option>
+                                    <option value="urgent">Urgent (24-48h)</option>
+                                    <option value="standard">Standard (3-5 jours)</option>
+                                    <option value="long">Long terme (+1 semaine)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Description de la demande</label>
+                                <textarea id="message" class="form-control" rows="4" 
+                                          placeholder="Décrivez votre projet d'impression..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane"></i> Envoyer la demande
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-sophistique">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
+                        <div class="footer-logo-text">
+                            <h3>DIRPA</h3>
+                            <span>Imprimerie Officielle</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Centre d'impression des Forces Armées Sénégalaises, 
+                        garant de la qualité et de la sécurité des documents institutionnels.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Procédures</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Demande d'impression</a></li>
+                        <li><a href="#">Guide des formats</a></li>
+                        <li><a href="#">Délais de production</a></li>
+                        <li><a href="#">Normes qualité</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Ressources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Modèles de documents</a></li>
+                        <li><a href="#">Chartes graphiques</a></li>
+                        <li><a href="#">FAQ Technique</a></li>
+                        <li><a href="#">Téléchargements</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 DIRPA - Imprimerie Officielle. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script simple pour la page imprimerie
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page Imprimerie chargée');
+            
+            // Gestion du formulaire
+            document.getElementById('demandeForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const service = document.getElementById('service').value;
+                const quantite = document.getElementById('quantite').value;
+                const delai = document.getElementById('delai').value;
+                
+                alert(`Votre demande d'impression a été envoyée avec succès !\n\nService: ${service}\nQuantité: ${quantite}\nDélai: ${delai}\n\nNous vous contacterons pour confirmation.`);
+                this.reset();
+            });
+
+            // Gestion du menu mobile
+            document.getElementById('mobileToggle').addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            // Animation des cartes de service
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Animation des réalisations
+            document.querySelectorAll('.realisation-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

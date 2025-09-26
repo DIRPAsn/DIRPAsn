@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reportages stratégiques de la DIRPA - Analyses et communications des Forces Armées Sénégalaises">
+    <title>Reportages - Médias Stratégies DIRPA</title>
+    
+    <link rel="stylesheet" href="pro3-sophistique.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Styles spécifiques aux reportages */
+        .reportages-hero {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reportages-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('MEDIA/pattern-news.png') repeat;
+            opacity: 0.1;
+        }
+
+        .reportages-badge {
+            display: inline-block;
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .reportages-titre {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            line-height: 1.1;
+        }
+
+        .reportages-sous-titre {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .reportages-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+        }
+
+        .reportage-stat {
+            text-align: center;
+        }
+
+        .reportage-stat .stat-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .reportage-stat .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* Section principale */
+        .reportages-main {
+            padding: 80px 0;
+            background: var(--background-color);
+        }
+
+        /* En-tête de section */
+        .section-header-reportages {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section-title-reportages {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title-reportages::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-gold);
+        }
+
+        /* Filtres avancés */
+        .reportages-filters {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 50px;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-option {
+            padding: 8px 16px;
+            background: var(--background-color);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .filter-option.active,
+        .filter-option:hover {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .search-box-reportages {
+            position: relative;
+            max-width: 400px;
+        }
+
+        .search-box-reportages input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-box-reportages input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+        }
+
+        .search-box-reportages button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Grille des reportages */
+        .reportages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .reportage-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .reportage-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .reportage-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .reportage-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .reportage-card.featured .reportage-image {
+            height: 400px;
+        }
+
+        .reportage-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .reportage-card:hover .reportage-image img {
+            transform: scale(1.1);
+        }
+
+        .reportage-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .reportage-content {
+            padding: 30px;
+        }
+
+        .reportage-card.featured .reportage-content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .reportage-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .reportage-date, .reportage-author, .reportage-reading-time {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .reportage-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        .reportage-card.featured .reportage-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .reportage-excerpt {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .reportage-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .reportage-tag {
+            background: var(--background-color);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .reportage-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .reportage-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .read-btn {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .share-btn {
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .reportage-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Pagination */
+        .reportages-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+
+        .pagination-btn {
+            padding: 12px 20px;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .pagination-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .pagination-btn:hover:not(.active) {
+            border-color: var(--primary-color);
+        }
+
+        .pagination-info {
+            color: var(--text-light);
+            margin: 0 20px;
+        }
+
+        /* Section newsletter */
+        .newsletter-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .reportages-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .reportages-titre {
+                font-size: 2.5rem;
+            }
+            
+            .reportages-stats {
+                gap: 30px;
+            }
+            
+            .reportage-stat .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .reportages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .reportage-card.featured {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header-reportages {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .section-title-reportages::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .reportages-titre {
+                font-size: 2rem;
+            }
+            
+            .reportage-content {
+                padding: 20px;
+            }
+            
+            .reportage-title {
+                font-size: 1.2rem;
+            }
+            
+            .reportage-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-sophistique">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-info">
+                    <span><i class="fas fa-phone"></i> +221 33 849 00 00</span>
+                    <span><i class="fas fa-envelope"></i> contact@dirpa.sn</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Avenue des Jambaares, Dakar Plateau</span>
+                </div>
+                <div class="header-social">
+                    <a href="https://www.facebook.com/profile.php?id=100066455349864" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/@CHEFDIRPA" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@dirpa.armees_sn" target="_blank" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://youtube.com/@dirpa4155?si=M4tlUrUKACIum7GP" target="_blank" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="header-main">
+            <div class="container">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <a href="pro3.html" class="logo-link">
+                            <img src="logo-pays.png" alt="République du Sénégal" class="logo-pays">
+                            <div class="logo-main">
+                                <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
+                                <div class="logo-text">
+                                    <span class="logo-title">DIRPA</span>
+                                    <span class="logo-subtitle">Forces Armées Sénégalaises</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="pro3.html" class="nav-link">
+                                <i class="fas fa-home"></i> Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="biographie-directeur.html" class="nav-link">
+                                <i class="fas fa-user-tie"></i> Directeur
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-video"></i> Production Audiovisuelle
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link active">
+                                <i class="fas fa-newspaper"></i> Médias & Stratégies
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="reportages.html" class="dropdown-link active">Reportages</a>
+                                <a href="analyses.html" class="dropdown-link">Analyses Stratégiques</a>
+                                <a href="communiques.html" class="dropdown-link">Communiqués</a>
+                                <a href="interviews.html" class="dropdown-link">Interviews</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="nav-actions">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="Rechercher...">
+                            <button class="search-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                        <button class="mobile-toggle" id="mobileToggle">
+                            <span></span><span></span><span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="reportages-hero">
+        <div class="container">
+            <div class="reportages-badge">Division Médias & Stratégies</div>
+            <h1 class="reportages-titre">Reportages Stratégiques</h1>
+            <p class="reportages-sous-titre">
+                Analyses approfondies, reportages exclusifs et communications stratégiques 
+                des Forces Armées Sénégalaises. Une couverture médiatique professionnelle 
+                au service de la transparence et de l'information.
+            </p>
+            
+            <div class="reportages-stats">
+                <div class="reportage-stat">
+                    <span class="stat-number">248</span>
+                    <span class="stat-label">Reportages publiés</span>
+                </div>
+                <div class="reportage-stat">
+                    <span class="stat-number">156K</span>
+                    <span class="stat-label">Lecteurs mensuels</span>
+                </div>
+                <div class="reportage-stat">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Satisfaction lecteurs</span>
+                </div>
+                <div class="reportage-stat">
+                    <span class="stat-number">45</span>
+                    <span class="stat-label">Médias partenaires</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenu Principal -->
+    <main class="reportages-main">
+        <div class="container">
+            <!-- En-tête -->
+            <div class="section-header-reportages">
+                <h2 class="section-title-reportages">Derniers Reportages</h2>
+                <div class="search-box-reportages">
+                    <input type="text" placeholder="Rechercher un reportage...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <!-- Filtres -->
+            <section class="reportages-filters">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <h3>Catégories</h3>
+                        <div class="filter-options">
+                            <button class="filter-option active" data-filter="all">Tous</button>
+                            <button class="filter-option" data-filter="operations">Opérations</button>
+                            <button class="filter-option" data-filter="strategie">Stratégie</button>
+                            <button class="filter-option" data-filter="international">International</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Type de contenu</h3>
+                        <div class="filter-options">
+                            <button class="filter-option" data-type="analyse">Analyse</button>
+                            <button class="filter-option" data-type="reportage">Reportage</button>
+                            <button class="filter-option" data-type="interview">Interview</button>
+                            <button class="filter-option" data-type="communique">Communiqué</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h3>Période</h3>
+                        <div class="filter-options">
+                            <button class="filter-option" data-period="7">7 jours</button>
+                            <button class="filter-option" data-period="30">30 jours</button>
+                            <button class="filter-option" data-period="90">3 mois</button>
+                            <button class="filter-option" data-period="365">1 an</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grille des Reportages -->
+            <section class="reportages-grid" id="reportagesGrid">
+                <!-- Les reportages seront chargés par JavaScript -->
+            </section>
+
+            <!-- Pagination -->
+            <div class="reportages-pagination">
+                <button class="pagination-btn" data-page="1">1</button>
+                <button class="pagination-btn" data-page="2">2</button>
+                <button class="pagination-btn active" data-page="3">3</button>
+                <button class="pagination-btn" data-page="4">4</button>
+                <span class="pagination-info">Page 3 sur 8</span>
+                <button class="pagination-btn" data-page="next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <h2 class="newsletter-title">Restez Informé</h2>
+                    <p>Recevez nos derniers reportages stratégiques directement dans votre boîte email</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre adresse email" required>
+                        <button type="submit">S'abonner <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-sophistique">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
+                        <div class="footer-logo-text">
+                            <h3>DIRPA</h3>
+                            <span>Médias & Stratégies</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        La Division Médias & Stratégies assure la communication institutionnelle 
+                        et stratégique des Forces Armées Sénégalaises à travers des reportages 
+                        professionnels et analyses approfondies.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact Rédaction</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-edit"></i> Chef de Division: Colonel M. Diop</p>
+                        <p><i class="fas fa-phone"></i> +221 33 849 00 30</p>
+                        <p><i class="fas fa-envelope"></i> medias@dirpa.sn</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Accréditations Médias</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-id-card"></i> Service des accréditations</p>
+                        <p><i class="fas fa-clock"></i> Lun-Ven: 8h-18h</p>
+                        <p><i class="fas fa-file-alt"></i> Formulaire en ligne disponible</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Ressources Presse</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Kit médias</a></li>
+                        <li><a href="#">Archives presse</a></li>
+                        <li><a href="#">Calendrier événements</a></li>
+                        <li><a href="#">Contact presse</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-partners">
+                    <span>Partenaires médias :</span>
+                    <div class="partners-logos">
+                        <span>RTS • SENEWEB • APS • RFI</span>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2025 DIRPA - Division Médias & Stratégies. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données des reportages
+        const reportagesData = [
+            {
+                id: 1,
+                title: "Stratégie de sécurisation des frontières : Bilan et perspectives",
+                excerpt: "Analyse approfondie de la nouvelle stratégie de sécurisation des frontières nationales et son impact sur la stabilité régionale.",
+                category: "strategie",
+                type: "analyse",
+                date: "2024-03-20",
+                author: "Colonel A. Ndiaye",
+                readingTime: "12 min",
+                image: "MEDIA/reportage-frontieres.jpg",
+                featured: true,
+                tags: ["Frontières", "Sécurité", "Stratégie", "Analyse"]
+            },
+            {
+                id: 2,
+                title: "Reportage exclusif : Une journée avec les forces spéciales",
+                excerpt: "Immersion au cœur des unités d'élite des Forces Armées lors d'un exercice d'entraînement intensif.",
+                category: "operations",
+                type: "reportage",
+                date: "2024-03-18",
+                author: "Capitaine S. Diallo",
+                readingTime: "8 min",
+                image: "MEDIA/reportage-forces-speciales.jpg",
+                featured: false,
+                tags: ["ForcesSpéciales", "Entraînement", "Reportage"]
+            },
+            {
+                id: 3,
+                title: "Coopération militaire internationale : Les enjeux stratégiques",
+                excerpt: "Décryptage des partenariats militaires du Sénégal et leur impact sur la sécurité nationale.",
+                category: "international",
+                type: "analyse",
+                date: "2024-03-15",
+                author: "Dr. M. Sarr",
+                readingTime: "15 min",
+                image: "MEDIA/reportage-cooperation.jpg",
+                featured: false,
+                tags: ["International", "Coopération", "Stratégie"]
+            },
+            {
+                id: 4,
+                title: "Interview exclusive du CEMGA sur les défis sécuritaires",
+                excerpt: "Le Général Mbaye Cissé s'exprime sur les nouveaux défis sécuritaires et la modernisation des armées.",
+                category: "strategie",
+                type: "interview",
+                date: "2024-03-12",
+                author: "Commandant K. Fall",
+                readingTime: "10 min",
+                image: "MEDIA/reportage-interview-cemga.jpg",
+                featured: false,
+                tags: ["Interview", "CEMGA", "Stratégie"]
+            },
+            {
+                id: 5,
+                title: "Modernisation de l'armée de l'air : Nouveaux équipements",
+                excerpt: "Présentation des nouveaux aéronefs et systèmes de défense aérienne acquis par l'armée de l'air.",
+                category: "operations",
+                type: "reportage",
+                date: "2024-03-10",
+                author: "Lieutenant P. Diop",
+                readingTime: "6 min",
+                image: "MEDIA/reportage-armee-air.jpg",
+                featured: false,
+                tags: ["ArméeAir", "Équipement", "Modernisation"]
+            },
+            {
+                id: 6,
+                title: "Analyse : Cybersécurité et défense nationale",
+                excerpt: "Enjeux et stratégies de la cybersécurité dans la protection des infrastructures critiques.",
+                category: "strategie",
+                type: "analyse",
+                date: "2024-03-08",
+                author: "Dr. A. Bâ",
+                readingTime: "14 min",
+                image: "MEDIA/reportage-cybersecurite.jpg",
+                featured: false,
+                tags: ["Cybersécurité", "Stratégie", "Technologie"]
+            },
+            {
+                id: 7,
+                title: "Communiqué : Exercice militaire conjoint réussi",
+                excerpt: "Bilan de l'exercice militaire conjoint qui a mobilisé l'ensemble des forces armées.",
+                category: "operations",
+                type: "communique",
+                date: "2024-03-05",
+                author: "DIRPA",
+                readingTime: "5 min",
+                image: "MEDIA/reportage-exercice.jpg",
+                featured: false,
+                tags: ["Exercice", "Communiqué", "ForcesArmées"]
+            },
+            {
+                id: 8,
+                title: "Stratégie maritime : Protection des eaux territoriales",
+                excerpt: "Analyse de la nouvelle doctrine maritime pour la protection des ressources halieutiques.",
+                category: "strategie",
+                type: "analyse",
+                date: "2024-03-01",
+                author: "Capitaine de vaisseau L. Diagne",
+                readingTime: "11 min",
+                image: "MEDIA/reportage-maritime.jpg",
+                featured: false,
+                tags: ["Maritime", "Stratégie", "Protection"]
+            }
+        ];
+
+        class ReportagesPage {
+            constructor() {
+                this.reportages = reportagesData;
+                this.currentFilter = 'all';
+                this.currentType = 'all';
+                this.currentPeriod = 'all';
+                this.currentPage = 1;
+                this.reportagesPerPage = 6;
+                this.init();
+            }
+
+            init() {
+                this.renderReportages();
+                this.setupEventListeners();
+                this.setupFilters();
+                console.log('Page reportages initialisée');
+            }
+
+            renderReportages() {
+                const grid = document.getElementById('reportagesGrid');
+                const filteredReportages = this.getFilteredReportages();
+                const startIndex = (this.currentPage - 1) * this.reportagesPerPage;
+                const endIndex = startIndex + this.reportagesPerPage;
+                const reportagesToShow = filteredReportages.slice(startIndex, endIndex);
+
+                grid.innerHTML = reportagesToShow.map(reportage => `
+                    <article class="reportage-card ${reportage.featured ? 'featured' : ''}">
+                        <div class="reportage-image">
+                            <img src="${reportage.image}" alt="${reportage.title}"
+                                 onerror="this.src='https://via.placeholder.com/400x250/1a365d/ffffff?text=Reportage'">
+                            <div class="reportage-badge">${this.getTypeLabel(reportage.type)}</div>
+                        </div>
+                        <div class="reportage-content">
+                            <div class="reportage-meta">
+                                <span class="reportage-date">
+                                    <i class="far fa-calendar"></i> ${this.formatDate(reportage.date)}
+                                </span>
+                                <span class="reportage-author">
+                                    <i class="far fa-user"></i> ${reportage.author}
+                                </span>
+                                <span class="reportage-reading-time">
+                                    <i class="far fa-clock"></i> ${reportage.readingTime}
+                                </span>
+                            </div>
+                            <h3 class="reportage-title">${reportage.title}</h3>
+                            <p class="reportage-excerpt">${reportage.excerpt}</p>
+                            <div class="reportage-tags">
+                                ${reportage.tags.map(tag => `<span class="reportage-tag">#${tag}</span>`).join('')}
+                            </div>
+                            <div class="reportage-actions">
+                                <button class="reportage-btn read-btn" data-id="${reportage.id}">
+                                    <i class="fas fa-book-open"></i> Lire le reportage
+                                </button>
+                                <button class="reportage-btn share-btn">
+                                    <i class="fas fa-share"></i> Partager
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                `).join('');
+            }
+
+            getFilteredReportages() {
+                let filtered = this.reportages;
+
+                // Filtrage par catégorie
+                if (this.currentFilter !== 'all') {
+                    filtered = filtered.filter(reportage => reportage.category === this.currentFilter);
+                }
+
+                // Filtrage par type
+                if (this.currentType !== 'all') {
+                    filtered = filtered.filter(reportage => reportage.type === this.currentType);
+                }
+
+                // Filtrage par période
+                if (this.currentPeriod !== 'all') {
+                    const days = parseInt(this.currentPeriod);
+                    const cutoffDate = new Date();
+                    cutoffDate.setDate(cutoffDate.getDate() - days);
+                    
+                    filtered = filtered.filter(reportage => {
+                        const reportageDate = new Date(reportage.date);
+                        return reportageDate >= cutoffDate;
+                    });
+                }
+
+                return filtered;
+            }
+
+            setupEventListeners() {
+                // Clic sur un reportage
+                document.addEventListener('click', (e) => {
+                    const readBtn = e.target.closest('.read-btn');
+                    if (readBtn) {
+                        const reportageId = parseInt(readBtn.dataset.id);
+                        this.openReportage(reportageId);
+                    }
+                });
+
+                // Pagination
+                document.querySelectorAll('.pagination-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const page = btn.dataset.page;
+                        if (page === 'next') {
+                            this.currentPage++;
+                        } else {
+                            this.currentPage = parseInt(page);
+                        }
+                        this.renderReportages();
+                        this.updatePagination();
+                    });
+                });
+            }
+
+            setupFilters() {
+                // Filtres par catégorie
+                document.querySelectorAll('.filter-option[data-filter]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.filter-option[data-filter]').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        this.currentFilter = btn.dataset.filter;
+                        this.currentPage = 1;
+                        this.renderReportages();
+                        this.updatePagination();
+                    });
+                });
+
+                // Filtres par type
+                document.querySelectorAll('.filter-option[data-type]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.filter-option[data-type]').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        this.currentType = btn.dataset.type;
+                        this.currentPage = 1;
+                        this.renderReportages();
+                        this.updatePagination();
+                    });
+                });
+
+                // Filtres par période
+                document.querySelectorAll('.filter-option[data-period]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.filter-option[data-period]').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        this.currentPeriod = btn.dataset.period;
+                        this.currentPage = 1;
+                        this.renderReportages();
+                        this.updatePagination();
+                    });
+                });
+
+                // Recherche
+                document.querySelector('.search-box-reportages input').addEventListener('input', (e) => {
+                    this.searchReportages(e.target.value);
+                });
+            }
+
+            openReportage(reportageId) {
+                const reportage = this.reportages.find(r => r.id === reportageId);
+                if (reportage) {
+                    // Redirection vers la page de détail du reportage
+                    window.location.href = `reportage-detail.html?id=${reportageId}`;
+                }
+            }
+
+            searchReportages(query) {
+                if (query.trim() === '') {
+                    this.renderReportages();
+                } else {
+                    const filtered = this.reportages.filter(reportage =>
+                        reportage.title.toLowerCase().includes(query.toLowerCase()) ||
+                        reportage.excerpt.toLowerCase().includes(query.toLowerCase()) ||
+                        reportage.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
+                    );
+                    // Afficher les résultats de recherche
+                    this.displaySearchResults(filtered);
+                }
+            }
+
+            displaySearchResults(results) {
+                const grid = document.getElementById('reportagesGrid');
+                if (results.length === 0) {
+                    grid.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 60px; color: var(--text-light);">
+                            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                            <h3>Aucun reportage trouvé</h3>
+                            <p>Essayez avec d'autres termes de recherche</p>
+                        </div>
+                    `;
+                } else {
+                    // Réutiliser la logique de rendu avec les résultats filtrés
+                    this.reportages = results;
+                    this.renderReportages();
+                }
+            }
+
+            updatePagination() {
+                const filteredCount = this.getFilteredReportages().length;
+                const totalPages = Math.ceil(filteredCount / this.reportagesPerPage);
+                
+                // Mettre à jour les boutons de pagination
+                document.querySelectorAll('.pagination-btn').forEach(btn => {
+                    const page = btn.dataset.page;
+                    if (page && !isNaN(page)) {
+                        btn.classList.toggle('active', parseInt(page) === this.currentPage);
+                    }
+                });
+                
+                // Mettre à jour l'info de pagination
+                const infoElement = document.querySelector('.pagination-info');
+                if (infoElement) {
+                    infoElement.textContent = `Page ${this.currentPage} sur ${totalPages}`;
+                }
+            }
+
+            getTypeLabel(type) {
+                const labels = {
+                    'analyse': '📊 Analyse',
+                    'reportage': '📰 Reportage',
+                    'interview': '🎤 Interview',
+                    'communique': '📢 Communiqué'
+                };
+                return labels[type] || type;
+            }
+
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('fr-FR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            new ReportagesPage();
+            
+            // Gestion du menu mobile
+            document.getElementById('mobileToggle').addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            // Newsletter
+            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input').value;
+                alert(`Merci pour votre inscription à la newsletter ! Un email de confirmation a été envoyé à ${email}`);
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>

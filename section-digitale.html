@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Section Digitale de la DIRPA - Transformation numérique des Forces Armées Sénégalaises">
+    <title>Section Digitale - DIRPA</title>
+    
+    <link rel="stylesheet" href="pro3-sophistique.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Styles spécifiques à la section digitale */
+        .digitale-hero {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .digitale-badge {
+            display: inline-block;
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .digitale-titre {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .digitale-sous-titre {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Section principale */
+        .digitale-main {
+            padding: 80px 0;
+            background: var(--background-color);
+        }
+
+        /* Cartes de services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Section statistiques */
+        .stats-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 60px 0;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Section équipe */
+        .equipe-section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .equipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .membre-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .membre-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 4px solid var(--gradient-gold);
+        }
+
+        .membre-nom {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .membre-poste {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .membre-contact {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Section contact */
+        .contact-section {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            margin: 60px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--background-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .digitale-titre {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .equipe-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-section {
+                padding: 40px 20px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .digitale-titre {
+                font-size: 1.8rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-sophistique">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-info">
+                    <span><i class="fas fa-phone"></i> +221 33 849 00 00</span>
+                    <span><i class="fas fa-envelope"></i> contact@dirpa.sn</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Avenue des Jambaares, Dakar Plateau</span>
+                </div>
+                <div class="header-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="header-main">
+            <div class="container">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <a href="pro3.html" class="logo-link">
+                            <img src="logo-pays.png" alt="République du Sénégal" class="logo-pays">
+                            <div class="logo-main">
+                                <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
+                                <div class="logo-text">
+                                    <span class="logo-title">DIRPA</span>
+                                    <span class="logo-subtitle">Forces Armées Sénégalaises</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="pro3.html" class="nav-link">
+                                <i class="fas fa-home"></i> Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="biographie-directeur.html" class="nav-link">
+                                <i class="fas fa-user-tie"></i> Directeur
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="production-audiovisuelle.html" class="nav-link">
+                                <i class="fas fa-video"></i> Production Audiovisuelle
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="medias-strategies.html" class="nav-link">
+                                <i class="fas fa-newspaper"></i> Médias & Stratégies
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="section-digitale.html" class="nav-link active">
+                                <i class="fas fa-laptop-code"></i> Section Digitale
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="nav-actions">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="Rechercher...">
+                            <button class="search-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                        <button class="mobile-toggle" id="mobileToggle">
+                            <span></span><span></span><span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="digitale-hero">
+        <div class="container">
+            <div class="digitale-badge">Innovation Technologique</div>
+            <h1 class="digitale-titre">Section Digitale</h1>
+            <p class="digitale-sous-titre">
+                Pilote de la transformation numérique des Forces Armées Sénégalaises. 
+                Développement d'applications, cybersécurité et innovation technologique.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contenu Principal -->
+    <main class="digitale-main">
+        <div class="container">
+            <!-- Section Services -->
+            <section>
+                <h2 class="section-title">Nos Domaines d'Expertise</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="service-title">Développement d'Applications</h3>
+                        <p class="service-description">
+                            Conception et développement d'applications métiers sur mesure 
+                            pour les besoins opérationnels des Forces Armées.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="service-title">Cybersécurité</h3>
+                        <p class="service-description">
+                            Protection des systèmes d'information et infrastructures critiques 
+                            contre les cybermenaces.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="service-title">Infrastructure Cloud</h3>
+                        <p class="service-description">
+                            Gestion et optimisation des infrastructures cloud sécurisées 
+                            pour le stockage et le traitement des données.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="service-title">Applications Mobiles</h3>
+                        <p class="service-description">
+                            Développement d'applications mobiles sécurisées pour les 
+                            besoins terrain des unités opérationnelles.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="service-title">Gestion des Données</h3>
+                        <p class="service-description">
+                            Structuration et sécurisation des bases de données 
+                            pour une gestion optimale de l'information.
+                        </p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="service-title">Innovation Technologique</h3>
+                        <p class="service-description">
+                            Veille technologique et mise en œuvre de solutions innovantes 
+                            pour moderniser les processus.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Statistiques -->
+            <section class="stats-section">
+                <div class="container">
+                    <h2 style="color: white; margin-bottom: 20px;">Chiffres Clés</h2>
+                    <p style="opacity: 0.9; margin-bottom: 40px;">Notre impact dans la transformation digitale des Forces Armées</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">25+</div>
+                            <div class="stat-label">Applications Développées</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Disponibilité Systèmes</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">Experts IT</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2020</div>
+                            <div class="stat-label">Lancement Section</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Équipe -->
+            <section class="equipe-section">
+                <h2 class="section-title">Notre Équipe</h2>
+                <div class="equipe-grid">
+                    <div class="membre-card">
+                        <img src="MEDIA/chef-digitale.jpg" alt="Chef de Section Digitale" class="membre-photo"
+                             onerror="this.src='https://via.placeholder.com/120x120/1a365d/ffffff?text=CD'">
+                        <h3 class="membre-nom">Commandant A. Diallo</h3>
+                        <p class="membre-poste">Chef de Section Digitale</p>
+                        <p class="membre-contact">a.diallo@dirpa.sn</p>
+                    </div>
+
+                    <div class="membre-card">
+                        <img src="MEDIA/dev-senior.jpg" alt="Développeur Senior" class="membre-photo"
+                             onerror="this.src='https://via.placeholder.com/120x120/1a365d/ffffff?text=DS'">
+                        <h3 class="membre-nom">Lieutenant S. Ndiaye</h3>
+                        <p class="membre-poste">Développeur Senior</p>
+                        <p class="membre-contact">s.ndiaye@dirpa.sn</p>
+                    </div>
+
+                    <div class="membre-card">
+                        <img src="MEDIA/cyber-expert.jpg" alt="Expert Cybersécurité" class="membre-photo"
+                             onerror="this.src='https://via.placeholder.com/120x120/1a365d/ffffff?text=EC'">
+                        <h3 class="membre-nom">Capitaine M. Fall</h3>
+                        <p class="membre-poste">Expert Cybersécurité</p>
+                        <p class="membre-contact">m.fall@dirpa.sn</p>
+                    </div>
+
+                    <div class="membre-card">
+                        <img src="MEDIA/admin-systeme.jpg" alt="Administrateur Système" class="membre-photo"
+                             onerror="this.src='https://via.placeholder.com/120x120/1a365d/ffffff?text=AS'">
+                        <h3 class="membre-nom">Adjudant P. Diop</h3>
+                        <p class="membre-poste">Administrateur Système</p>
+                        <p class="membre-contact">p.diop@dirpa.sn</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section Contact -->
+            <section class="contact-section">
+                <h2 class="section-title">Contactez la Section Digitale</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Informations de Contact</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <strong>Téléphone</strong><br>
+                                +221 33 849 00 40
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <strong>Email</strong><br>
+                                digitale@dirpa.sn
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <strong>Adresse</strong><br>
+                                DIRPA, Avenue des Jambaares<br>
+                                Dakar Plateau, Sénégal
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <strong>Horaires</strong><br>
+                                Lundi - Vendredi: 8h00 - 18h00
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Demande de Support</h3>
+                        <form id="supportForm">
+                            <div style="margin-bottom: 20px;">
+                                <input type="text" placeholder="Votre nom" required 
+                                       style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <input type="email" placeholder="Votre email" required
+                                       style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <select style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;">
+                                    <option>Sélectionnez un service</option>
+                                    <option>Support technique</option>
+                                    <option>Développement d'application</option>
+                                    <option>Cybersécurité</option>
+                                    <option>Formation</option>
+                                </select>
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <textarea placeholder="Description de votre demande" rows="5"
+                                          style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px;"></textarea>
+                            </div>
+                            <button type="submit" style="background: var(--gradient-primary); color: white; border: none; padding: 15px 30px; border-radius: 25px; cursor: pointer; width: 100%;">
+                                <i class="fas fa-paper-plane"></i> Envoyer la demande
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-sophistique">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
+                        <div class="footer-logo-text">
+                            <h3>DIRPA</h3>
+                            <span>Section Digitale</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        Pilote de l'innovation technologique et de la transformation digitale 
+                        des Forces Armées Sénégalaises.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Liens Rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Applications Internes</a></li>
+                        <li><a href="#">Support Technique</a></li>
+                        <li><a href="#">Formations</a></li>
+                        <li><a href="#">Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Ressources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Guide utilisateur</a></li>
+                        <li><a href="#">FAQ Technique</a></li>
+                        <li><a href="#">Téléchargements</a></li>
+                        <li><a href="#">Statut des services</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 DIRPA - Section Digitale. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script simple pour la page digitale
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page Section Digitale chargée');
+            
+            // Animation des statistiques
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent.replace('+', '').replace('%', ''));
+                let current = 0;
+                const duration = 2000;
+                const increment = target / (duration / 16);
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = stat.textContent.includes('+') ? target + '+' : 
+                                          stat.textContent.includes('%') ? target + '%' : target;
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 16);
+            });
+
+            // Gestion du formulaire
+            document.getElementById('supportForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Votre demande de support a été envoyée avec succès. Nous vous répondrons dans les plus brefs délais.');
+                this.reset();
+            });
+
+            // Gestion du menu mobile
+            document.getElementById('mobileToggle').addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            // Effet de hover sur les cartes de service
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

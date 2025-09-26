@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vidéos des productions audiovisuelles de la DIRPA - Forces Armées Sénégalaises">
+    <title>Vidéos - Production Audiovisuelle DIRPA</title>
+    
+    <link rel="stylesheet" href="pro3-sophistique.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Styles spécifiques à la page vidéos */
+        .videos-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .videos-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('MEDIA/pattern-video.png') repeat;
+            opacity: 0.1;
+        }
+
+        .videos-badge {
+            display: inline-block;
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .videos-titre {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .videos-sous-titre {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .videos-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-stat {
+            text-align: center;
+        }
+
+        .video-stat .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .video-stat .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Section principale */
+        .videos-main {
+            padding: 80px 0;
+            background: var(--background-color);
+        }
+
+        /* Player principal */
+        .video-player-section {
+            margin-bottom: 60px;
+        }
+
+        .video-player-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 600px;
+            background: #000;
+            position: relative;
+        }
+
+        .video-player iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 30px;
+        }
+
+        .video-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .video-date, .video-duration, .video-views {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+        }
+
+        .video-description {
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 25px;
+        }
+
+        .video-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .like-btn {
+            background: var(--background-color);
+            color: var(--text-color);
+        }
+
+        .like-btn.liked {
+            background: #ff4757;
+            color: white;
+        }
+
+        .share-btn {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .download-btn {
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Galerie de vidéos */
+        .videos-gallery-section {
+            margin-top: 60px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .view-options {
+            display: flex;
+            background: white;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .view-option {
+            padding: 8px 15px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .view-option.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Grille des vidéos */
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-thumbnail img {
+            transform: scale(1.1);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .play-button {
+            background: var(--primary-color);
+            color: white;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .video-card-content {
+            padding: 20px;
+        }
+
+        .video-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .video-card-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .video-card-description {
+            color: var(--text-light);
+            line-height: 1.5;
+            font-size: 0.9rem;
+        }
+
+        /* Filtres */
+        .videos-filters {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .filters-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .filter-category h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: var(--background-color);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Chargement plus */
+        .load-more-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .load-more-btn {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .load-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .video-player {
+                height: 400px;
+            }
+            
+            .videos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .videos-titre {
+                font-size: 2.5rem;
+            }
+            
+            .videos-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .video-player {
+                height: 300px;
+            }
+            
+            .video-title {
+                font-size: 1.5rem;
+            }
+            
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .video-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .video-actions {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .videos-titre {
+                font-size: 2rem;
+            }
+            
+            .video-player {
+                height: 250px;
+            }
+            
+            .video-info {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-sophistique">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-info">
+                    <span><i class="fas fa-phone"></i> +221 33 849 00 00</span>
+                    <span><i class="fas fa-envelope"></i> contact@dirpa.sn</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Avenue des Jambaares, Dakar Plateau</span>
+                </div>
+                <div class="header-social">
+                    <a href="https://www.facebook.com/profile.php?id=100066455349864" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com/@CHEFDIRPA" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@dirpa.armees_sn" target="_blank" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://youtube.com/@dirpa4155?si=M4tlUrUKACIum7GP" target="_blank" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <nav class="header-main">
+            <div class="container">
+                <div class="nav-container">
+                    <div class="nav-logo">
+                        <a href="pro3.html" class="logo-link">
+                            <img src="logo-pays.png" alt="République du Sénégal" class="logo-pays">
+                            <div class="logo-main">
+                                <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
+                                <div class="logo-text">
+                                    <span class="logo-title">DIRPA</span>
+                                    <span class="logo-subtitle">Forces Armées Sénégalaises</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="pro3.html" class="nav-link">
+                                <i class="fas fa-home"></i> Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="biographie-directeur.html" class="nav-link">
+                                <i class="fas fa-user-tie"></i> Directeur
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link active">
+                                <i class="fas fa-video"></i> Production Audiovisuelle
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="production-audiovisuelle.html" class="dropdown-link">Galerie Images</a>
+                                <a href="videos.html" class="dropdown-link active">Vidéos</a>
+                                <a href="reportages.html" class="dropdown-link">Reportages</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-newspaper"></i> Médias
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="nav-actions">
+                        <div class="search-box">
+                            <input type="text" class="search-input" placeholder="Rechercher...">
+                            <button class="search-btn"><i class="fas fa-search"></i></button>
+                        </div>
+                        <button class="mobile-toggle" id="mobileToggle">
+                            <span></span><span></span><span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="videos-hero">
+        <div class="container">
+            <div class="videos-badge">Division Production Audiovisuelle</div>
+            <h1 class="videos-titre">Vidéos des Forces Armées</h1>
+            <p class="videos-sous-titre">Découvrez nos reportages vidéos exclusifs sur les activités des Forces Armées Sénégalaises</p>
+            
+            <div class="videos-stats">
+                <div class="video-stat">
+                    <span class="stat-number">156</span>
+                    <span class="stat-label">Vidéos publiées</span>
+                </div>
+                <div class="video-stat">
+                    <span class="stat-number">2.5M</span>
+                    <span class="stat-label">Vues totales</span>
+                </div>
+                <div class="video-stat">
+                    <span class="stat-number">2020</span>
+                    <span class="stat-label">Archives depuis</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenu Principal -->
+    <main class="videos-main">
+        <div class="container">
+            <!-- Player Principal -->
+            <section class="video-player-section">
+                <div class="video-player-container">
+                    <div class="video-player" id="mainVideoPlayer">
+                        <iframe src="https://www.youtube.com/embed/WeNfExlkNZU" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h1 class="video-title" id="mainVideoTitle">Cérémonie de prise de commandement de la Zone Militaire N°4</h1>
+                        <div class="video-meta">
+                            <span class="video-date"><i class="far fa-calendar"></i> 15 Mars 2024</span>
+                            <span class="video-duration"><i class="far fa-clock"></i> 12:45</span>
+                            <span class="video-views"><i class="far fa-eye"></i> 45,678 vues</span>
+                        </div>
+                        <p class="video-description" id="mainVideoDescription">
+                            Cérémonie solennelle de prise de commandement de la Zone Militaire N°4 par le Colonel Simon Sarr, 
+                            en présence du Général Mbaye Cissé, Chef d'État-Major Général des Armées. La cérémonie s'est déroulée 
+                            dans le strict respect des traditions militaires avec la passation des pouvoirs et la revue des troupes.
+                        </p>
+                        <div class="video-actions">
+                            <button class="action-btn like-btn" id="likeBtn">
+                                <i class="far fa-thumbs-up"></i> J'aime
+                            </button>
+                            <button class="action-btn share-btn">
+                                <i class="fas fa-share"></i> Partager
+                            </button>
+                            <button class="action-btn download-btn">
+                                <i class="fas fa-download"></i> Télécharger
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filtres -->
+            <section class="videos-filters">
+                <div class="filters-group">
+                    <div class="filter-category">
+                        <h3>Catégories</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">Toutes</button>
+                            <button class="filter-btn" data-filter="operations">Opérations</button>
+                            <button class="filter-btn" data-filter="ceremonies">Cérémonies</button>
+                            <button class="filter-btn" data-filter="entrainement">Entraînement</button>
+                            <button class="filter-btn" data-filter="reportages">Reportages</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-category">
+                        <h3>Trier par</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-sort="recent">Plus récent</button>
+                            <button class="filter-btn" data-sort="popular">Plus populaires</button>
+                            <button class="filter-btn" data-sort="duration">Durée</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Galerie de Vidéos -->
+            <section class="videos-gallery-section">
+                <div class="section-header">
+                    <h2 class="section-title">Galerie Vidéo</h2>
+                    <div class="view-options">
+                        <button class="view-option active" data-view="grid">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-option" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="videos-grid" id="videosGrid">
+                    <!-- Les vidéos seront chargées par JavaScript -->
+                </div>
+
+                <div class="load-more-container">
+                    <button class="load-more-btn" id="loadMoreVideos">
+                        <i class="fas fa-plus"></i> Charger plus de vidéos
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-sophistique">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
+                        <div class="footer-logo-text">
+                            <h3>DIRPA</h3>
+                            <span>Production Audiovisuelle</span>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        La Division Production Audiovisuelle produit et diffuse des contenus vidéo 
+                        professionnels sur les activités des Forces Armées Sénégalaises.
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact Vidéo</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-video"></i> Chef de section vidéo: Commandant A. Diallo</p>
+                        <p><i class="fas fa-phone"></i> +221 33 849 00 25</p>
+                        <p><i class="fas fa-envelope"></i> video@dirpa.sn</p>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Chaînes Officielles</h3>
+                    <div class="footer-social">
+                        <a href="https://youtube.com/@dirpa4155" target="_blank">
+                            <i class="fab fa-youtube"></i> YouTube DIRPA
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-facebook"></i> Facebook Officiel
+                        </a>
+                        <a href="#" target="_blank">
+                            <i class="fab fa-tiktok"></i> TikTok DIRPA
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 DIRPA - Division Production Audiovisuelle. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Données des vidéos
+        const videosData = [
+            {
+                id: 1,
+                title: "Cérémonie de prise de commandement ZM4",
+                description: "Cérémonie solennelle de prise de commandement de la Zone Militaire N°4 par le Colonel Simon Sarr",
+                category: "ceremonies",
+                date: "2024-03-15",
+                duration: "12:45",
+                views: 45678,
+                youtubeId: "WeNfExlkNZU",
+                thumbnail: "MEDIA/thumb-ceremonie.jpg",
+                tags: ["Commandement", "Cérémonie", "ZM4"]
+            },
+            {
+                id: 2,
+                title: "Exercice militaire conjoint forces spéciales",
+                description: "Entraînement intensif des forces spéciales en zone désertique - Préparation opérationnelle",
+                category: "entrainement",
+                date: "2024-02-22",
+                duration: "08:30",
+                views: 23456,
+                youtubeId: "dQw4w9WgXcQ",
+                thumbnail: "MEDIA/thumb-entrainement.jpg",
+                tags: ["Entraînement", "ForcesSpéciales", "Exercice"]
+            },
+            {
+                id: 3,
+                title: "Reportage: Opération de sécurisation frontalière",
+                description: "Reportage exclusif sur les opérations de sécurisation des frontières nationales",
+                category: "operations",
+                date: "2024-01-10",
+                duration: "15:20",
+                views: 78901,
+                youtubeId: "abc123def456",
+                thumbnail: "MEDIA/thumb-operation.jpg",
+                tags: ["Opération", "Frontière", "Sécurisation"]
+            },
+            {
+                id: 4,
+                title: "Visite du CEMGA en zone orientale",
+                description: "Le Général Mbaye Cissé en visite d'inspection des troupes déployées en zone orientale",
+                category: "operations",
+                date: "2024-01-05",
+                duration: "09:15",
+                views: 34567,
+                youtubeId: "xyz789uvw012",
+                thumbnail: "MEDIA/thumb-visite.jpg",
+                tags: ["CEMGA", "Visite", "Inspection"]
+            },
+            {
+                id: 5,
+                title: "Modernisation des équipements de la Marine",
+                description: "Présentation des nouveaux équipements navals acquis par la Marine Sénégalaise",
+                category: "reportages",
+                date: "2023-12-20",
+                duration: "11:40",
+                views: 56789,
+                youtubeId: "ghi345jkl678",
+                thumbnail: "MEDIA/thumb-marine.jpg",
+                tags: ["Marine", "Équipement", "Modernisation"]
+            },
+            {
+                id: 6,
+                title: "Cérémonie de remise de décorations",
+                description: "Remise de médailles pour actes de bravoure exceptionnels lors d'opérations",
+                category: "ceremonies",
+                date: "2023-11-30",
+                duration: "07:55",
+                views: 29876,
+                youtubeId: "mno901pqr234",
+                thumbnail: "MEDIA/thumb-decorations.jpg",
+                tags: ["Décorations", "Médailles", "Bravoure"]
+            },
+            {
+                id: 7,
+                title: "Formation des cadres aux nouvelles technologies",
+                description: "Session de formation des officiers sur les dernières technologies militaires",
+                category: "entrainement",
+                date: "2023-11-15",
+                duration: "14:20",
+                views: 43210,
+                youtubeId: "stu567vwx890",
+                thumbnail: "MEDIA/thumb-formation.jpg",
+                tags: ["Formation", "Technologie", "Cadres"]
+            },
+            {
+                id: 8,
+                title: "Coopération militaire internationale",
+                description: "Exercice conjoint avec les forces armées partenaires dans le cadre de la coopération régionale",
+                category: "reportages",
+                date: "2023-10-25",
+                duration: "13:10",
+                views: 65432,
+                youtubeId: "yza123bcd456",
+                thumbnail: "MEDIA/thumb-cooperation.jpg",
+                tags: ["Coopération", "International", "Partenaire"]
+            }
+        ];
+
+        class VideosPage {
+            constructor() {
+                this.videos = videosData;
+                this.currentFilter = 'all';
+                this.currentSort = 'recent';
+                this.currentView = 'grid';
+                this.currentPage = 1;
+                this.videosPerPage = 6;
+                this.currentVideo = this.videos[0];
+                this.init();
+            }
+
+            init() {
+                this.renderVideoPlayer();
+                this.renderVideosGrid();
+                this.setupEventListeners();
+                this.setupFilters();
+                console.log('Page vidéos initialisée');
+            }
+
+            renderVideoPlayer() {
+                // Mettre à jour le player principal avec la vidéo courante
+                const iframe = document.querySelector('#mainVideoPlayer iframe');
+                iframe.src = `https://www.youtube.com/embed/${this.currentVideo.youtubeId}`;
+                
+                document.getElementById('mainVideoTitle').textContent = this.currentVideo.title;
+                document.getElementById('mainVideoDescription').textContent = this.currentVideo.description;
+            }
+
+            renderVideosGrid() {
+                const grid = document.getElementById('videosGrid');
+                const filteredVideos = this.getFilteredVideos();
+                const startIndex = 0;
+                const endIndex = this.currentPage * this.videosPerPage;
+                const videosToShow = filteredVideos.slice(startIndex, endIndex);
+
+                grid.innerHTML = videosToShow.map(video => `
+                    <div class="video-card" data-video-id="${video.id}">
+                        <div class="video-thumbnail">
+                            <img src="${video.thumbnail}" alt="${video.title}"
+                                 onerror="this.src='https://via.placeholder.com/350x200/1a365d/ffffff?text=Miniature'">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="video-duration">${video.duration}</div>
+                        </div>
+                        <div class="video-card-content">
+                            <h3 class="video-card-title">${video.title}</h3>
+                            <div class="video-card-meta">
+                                <span>${this.formatDate(video.date)}</span>
+                                <span>${this.formatViews(video.views)} vues</span>
+                            </div>
+                            <p class="video-card-description">${video.description}</p>
+                        </div>
+                    </div>
+                `).join('');
+
+                this.updateLoadMoreButton();
+            }
+
+            getFilteredVideos() {
+                let filtered = this.videos;
+
+                // Filtrage par catégorie
+                if (this.currentFilter !== 'all') {
+                    filtered = filtered.filter(video => video.category === this.currentFilter);
+                }
+
+                // Tri
+                filtered.sort((a, b) => {
+                    switch(this.currentSort) {
+                        case 'recent':
+                            return new Date(b.date) - new Date(a.date);
+                        case 'popular':
+                            return b.views - a.views;
+                        case 'duration':
+                            return this.durationToSeconds(b.duration) - this.durationToSeconds(a.duration);
+                        default:
+                            return 0;
+                    }
+                });
+
+                return filtered;
+            }
+
+            durationToSeconds(duration) {
+                const [minutes, seconds] = duration.split(':').map(Number);
+                return minutes * 60 + seconds;
+            }
+
+            setupEventListeners() {
+                // Clic sur une vidéo de la galerie
+                document.addEventListener('click', (e) => {
+                    const videoCard = e.target.closest('.video-card');
+                    if (videoCard) {
+                        const videoId = parseInt(videoCard.dataset.videoId);
+                        this.playVideo(videoId);
+                    }
+                });
+
+                // Bouton Like
+                document.getElementById('likeBtn').addEventListener('click', function() {
+                    this.classList.toggle('liked');
+                    const icon = this.querySelector('i');
+                    if (this.classList.contains('liked')) {
+                        icon.className = 'fas fa-thumbs-up';
+                        this.innerHTML = '<i class="fas fa-thumbs-up"></i> Aimé';
+                    } else {
+                        icon.className = 'far fa-thumbs-up';
+                        this.innerHTML = '<i class="far fa-thumbs-up"></i> J\'aime';
+                    }
+                });
+
+                // Charger plus de vidéos
+                document.getElementById('loadMoreVideos').addEventListener('click', () => {
+                    this.loadMoreVideos();
+                });
+            }
+
+            setupFilters() {
+                // Filtres par catégorie
+                document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.filter-btn[data-filter]').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        this.currentFilter = btn.dataset.filter;
+                        this.currentPage = 1;
+                        this.renderVideosGrid();
+                    });
+                });
+
+                // Tris
+                document.querySelectorAll('.filter-btn[data-sort]').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.filter-btn[data-sort]').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        this.currentSort = btn.dataset.sort;
+                        this.renderVideosGrid();
+                    });
+                });
+
+                // Options de vue
+                document.querySelectorAll('.view-option').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.view-option').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        this.currentView = btn.dataset.view;
+                        this.changeView();
+                    });
+                });
+            }
+
+            playVideo(videoId) {
+                this.currentVideo = this.videos.find(v => v.id === videoId);
+                this.renderVideoPlayer();
+                
+                // Scroll vers le player
+                document.querySelector('.video-player-section').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }
+
+            loadMoreVideos() {
+                this.currentPage++;
+                this.renderVideosGrid();
+            }
+
+            updateLoadMoreButton() {
+                const btn = document.getElementById('loadMoreVideos');
+                const filteredVideos = this.getFilteredVideos();
+                const displayedCount = this.currentPage * this.videosPerPage;
+
+                if (displayedCount >= filteredVideos.length) {
+                    btn.style.display = 'none';
+                } else {
+                    btn.style.display = 'inline-flex';
+                    btn.innerHTML = `<i class="fas fa-plus"></i> Charger plus de vidéos (${displayedCount}/${filteredVideos.length})`;
+                }
+            }
+
+            changeView() {
+                const grid = document.getElementById('videosGrid');
+                grid.className = `videos-grid ${this.currentView}-view`;
+                
+                // Implémenter les styles pour la vue liste si nécessaire
+                if (this.currentView === 'list') {
+                    grid.style.gridTemplateColumns = '1fr';
+                } else {
+                    grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(350px, 1fr))';
+                }
+            }
+
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('fr-FR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            }
+
+            formatViews(views) {
+                if (views >= 1000000) {
+                    return (views / 1000000).toFixed(1) + 'M';
+                } else if (views >= 1000) {
+                    return (views / 1000).toFixed(1) + 'K';
+                }
+                return views;
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            new VideosPage();
+            
+            // Gestion du menu mobile
+            document.getElementById('mobileToggle').addEventListener('click', function() {
+                document.querySelector('.nav-menu').classList.toggle('active');
+                this.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
