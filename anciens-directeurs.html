@@ -1,490 +1,262 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Biographie du Directeur de la Direction de l'Information et des Relations Publiques des Armées">
-    <title>Biographie du Directeur - DIRPA</title>
+    <meta name="description" content="Historique des anciens directeurs de la Direction de l'Information et des Relations Publiques des Armées">
+    <title>Anciens Directeurs - DIRPA</title>
     
     <link rel="stylesheet" href="pro3-sophistique.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     
     <style>
-        /* Styles spécifiques à la page biographie */
-        .biographie-hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2c5282 100%);
-            color: white;
-            padding: 100px 0 60px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .biographie-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('MEDIA/pattern-military.png') repeat;
-            opacity: 0.1;
-        }
-
-        .hero-content-biographie {
-            position: relative;
-            z-index: 2;
-        }
-
-        .directeur-badge {
-            display: inline-block;
-            background: var(--gradient-gold);
-            color: var(--primary-color);
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .directeur-titre {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.1;
-        }
-
-        .directeur-sous-titre {
-            font-size: 1.4rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-
-        .directeur-meta {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.1rem;
-        }
-
-        .meta-item i {
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-        }
-
-        /* Section principale */
-        .biographie-content {
+        /* Styles spécifiques à la page anciens directeurs */
+        .timeline-section {
             padding: 80px 0;
-            background: var(--background-color);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
-        .biographie-grid {
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        /* Sidebar profil */
-        .profile-sidebar {
-            position: sticky;
-            top: 120px;
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: var(--shadow);
+        .timeline-header {
             text-align: center;
+            margin-bottom: 60px;
         }
 
-        .profile-image {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid var(--gradient-gold);
-            margin: 0 auto 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .profile-grade {
-            font-size: 1.3rem;
-            color: var(--secondary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .profile-nom {
+        .timeline-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            font-size: 3rem;
             color: var(--primary-color);
             margin-bottom: 20px;
         }
 
-        .profile-fonction {
-            font-size: 1.1rem;
+        .timeline-subtitle {
+            font-size: 1.2rem;
             color: var(--text-light);
-            margin-bottom: 30px;
-            line-height: 1.5;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .profile-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 15px;
-            background: var(--background-color);
-            border-radius: 10px;
-        }
-
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        .profile-contact {
-            margin-top: 30px;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--gradient-primary);
-            color: white;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        /* Contenu principal */
-        .biographie-main {
-            background: white;
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: var(--shadow);
-        }
-
-        .section-tab {
-            margin-bottom: 50px;
-        }
-
-        .tab-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--gradient-gold);
-            display: inline-block;
-        }
-
-        .biographie-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-color);
-            margin-bottom: 25px;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e1f5fe 100%);
-            border-left: 4px solid var(--primary-color);
-            padding: 25px;
-            margin: 30px 0;
-            border-radius: 10px;
-        }
-
-        .parcours-timeline {
+        .timeline {
             position: relative;
-            padding-left: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
         }
 
-        .parcours-timeline::before {
+        .timeline::before {
             content: '';
             position: absolute;
-            left: 0;
+            left: 50%;
             top: 0;
             bottom: 0;
-            width: 3px;
+            width: 4px;
             background: var(--gradient-gold);
+            transform: translateX(-50%);
         }
 
         .timeline-item {
             position: relative;
-            margin-bottom: 40px;
-            padding-left: 30px;
+            margin-bottom: 80px;
+            width: 100%;
         }
 
-        .timeline-item::before {
-            content: '';
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+        }
+
+        .timeline-year {
             position: absolute;
-            left: -36px;
-            top: 8px;
-            width: 12px;
-            height: 12px;
-            background: var(--secondary-color);
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px var(--secondary-color);
-        }
-
-        .timeline-date {
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
             font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-
-        .timeline-titre {
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 1.2rem;
-        }
-
-        .timeline-lieu {
-            color: var(--text-light);
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        /* Réalisations */
-        .realisations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .realisation-card {
-            background: var(--background-color);
-            padding: 25px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .realisation-card:hover {
-            transform: translateY(-5px);
+            z-index: 2;
             box-shadow: var(--shadow);
         }
 
-        .realisation-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-primary);
+        .timeline-content {
+            width: 45%;
+            background: white;
+            padding: 30px;
             border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .realisation-titre {
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        /* Galerie médias */
-        .media-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .media-item {
+            box-shadow: var(--shadow);
             position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            cursor: pointer;
-            aspect-ratio: 1;
         }
 
-        .media-item img {
-            width: 100%;
-            height: 100%;
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-gold);
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -10px;
+        }
+
+        .director-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            border: 4px solid var(--gradient-gold);
+            margin-bottom: 20px;
         }
 
-        .media-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .media-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .media-item:hover .media-overlay {
-            transform: translateY(0);
-        }
-
-        /* Citations */
-        .citation-block {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 40px;
-            border-radius: 15px;
-            margin: 40px 0;
-            text-align: center;
-            position: relative;
-        }
-
-        .citation-block::before {
-            content: '"';
+        .director-name {
             font-family: 'Playfair Display', serif;
-            font-size: 6rem;
-            position: absolute;
-            top: -10px;
-            left: 30px;
-            opacity: 0.3;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
 
-        .citation-text {
-            font-size: 1.3rem;
-            font-style: italic;
+        .director-grade {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .director-period {
+            background: var(--background-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .director-bio {
+            color: var(--text-light);
             line-height: 1.6;
             margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
         }
 
-        .citation-auteur {
-            font-weight: 600;
-            font-size: 1.1rem;
+        .director-achievements {
+            margin-top: 20px;
         }
 
-        /* Navigation entre pages */
-        .page-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid var(--border-color);
+        .achievement-list {
+            list-style: none;
+            padding: 0;
         }
 
-        .nav-btn {
+        .achievement-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 15px 25px;
-            background: var(--background-color);
-            color: var(--text-color);
-            text-decoration: none;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            font-weight: 600;
         }
 
-        .nav-btn:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateX(-5px);
+        .achievement-list li:last-child {
+            border-bottom: none;
         }
 
-        .nav-btn.next:hover {
-            transform: translateX(5px);
+        .achievement-list li::before {
+            content: '✓';
+            color: var(--secondary-color);
+            font-weight: bold;
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .biographie-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .profile-sidebar {
-                position: static;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-        }
-
         @media (max-width: 768px) {
-            .directeur-titre {
-                font-size: 2.5rem;
+            .timeline::before {
+                left: 30px;
             }
 
-            .directeur-sous-titre {
-                font-size: 1.2rem;
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin-left: 80px !important;
             }
 
-            .directeur-meta {
-                flex-direction: column;
-                gap: 15px;
+            .timeline-year {
+                left: 30px;
+                transform: translateX(0);
             }
 
-            .biographie-main {
-                padding: 30px;
-            }
-
-            .profile-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .media-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-
-            .page-navigation {
-                flex-direction: column;
-                gap: 20px;
+            .timeline-content::before {
+                left: -10px !important;
+                right: auto !important;
             }
         }
 
-        /* Animations spécifiques */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Filtres */
+        .filter-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
         }
 
-        .animate-fade-in {
-            animation: fadeInUp 0.8s ease;
+        .filter-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--border-color);
+            background: white;
+            color: var(--text-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Statistiques */
+        .stats-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            padding: 30px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -532,7 +304,7 @@
             <div class="container">
                 <div class="nav-container">
                     <div class="nav-logo">
-                        <a href="pro3.html" class="logo-link">
+                        <a href="pro3-sophistique.html" class="logo-link">
                             <img src="logo-pays.png" alt="République du Sénégal" class="logo-pays">
                             <div class="logo-main">
                                 <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="DIRPA">
@@ -546,20 +318,20 @@
 
                     <ul class="nav-menu">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">
+                            <a href="pro3-sophistique.html" class="nav-link">
                                 <i class="fas fa-home"></i>
                                 Accueil
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a href="biographie-directeur.html" class="nav-link active">
+                            <a href="biographie-directeur.html" class="nav-link">
                                 <i class="fas fa-user-tie"></i>
                                 Directeur
                                 <i class="fas fa-chevron-down"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a href="biographie-directeur.html" class="dropdown-link active">Biographie</a>
-                                <a href="anciens-directeurs.html" class="dropdown-link">Anciens Directeurs</a>
+                                <a href="biographie-directeur.html" class="dropdown-link">Biographie</a>
+                                <a href="anciens-directeurs.html" class="dropdown-link active">Anciens Directeurs</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -594,198 +366,68 @@
         </nav>
     </header>
 
-    <!-- Hero Section Biographie -->
-    <section class="biographie-hero">
+    <!-- Hero Section -->
+    <section class="hero" style="height: 40vh; min-height: 300px;">
+        <div class="hero-slide active">
+            <img src="MEDIA/GARDE.jpeg" alt="Anciens Directeurs DIRPA" class="hero-image">
+            <div class="hero-content">
+                <div class="container">
+                    <div class="hero-badge">Histoire</div>
+                    <h1 class="hero-title">Anciens Directeurs de la DIRPA</h1>
+                    <p class="hero-description">Découvrez l'héritage et les contributions des dirigeants qui ont marqué l'histoire de notre institution</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="stats-section">
         <div class="container">
-            <div class="hero-content-biographie">
-                <div class="directeur-badge">Directeur en Fonction</div>
-                <h1 class="directeur-titre">Capitaine de Vaisseau <br>Ibrahima Sow</h1>
-                <p class="directeur-sous-titre">Directeur de l'Information et des Relations Publiques des Armées</p>
-                
-                <div class="directeur-meta">
-                    <div class="meta-item">
-                        <i class="fas fa-calendar-alt"></i>
-                        <span>En fonction depuis : Octobre 2024</span>
-                    </div>
-                    <div class="meta-item">
-                        <i class="fas fa-medal"></i>
-                        <span>28 ans de service militaire</span>
-                    </div>
-                    <div class="meta-item">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>Docteur en Communication Stratégique</span>
-                    </div>
+            <h2 class="section-title" style="color: white;">Notre Héritage en Chiffres</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number counter" data-target="15">0</div>
+                    <div class="stat-label">Directeurs depuis 1960</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number counter" data-target="63">0</div>
+                    <div class="stat-label">Années d'excellence</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number counter" data-target="250">0</div>
+                    <div class="stat-label">Réalisations majeures</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number counter" data-target="12">0</div>
+                    <div class="stat-label">Récompenses nationales</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contenu Principal -->
-    <section class="biographie-content">
+    <!-- Filtres -->
+    <section class="timeline-section">
         <div class="container">
-            <div class="biographie-grid">
-                <!-- Sidebar Profil -->
-                <aside class="profile-sidebar animate-fade-in">
-                    <img src="MEDIA/directeur-actuel.jpg" alt="Général Jean-Marie Diop" class="profile-image" 
-                         onerror="this.src='MEDIA/placeholder-director.jpg'">
-                    
-                    <div class="profile-grade"> Capitaine de Vaisseau </div>
-                    <h2 class="profile-nom">Ibrahima Sow</h2>
-                    <p class="profile-fonction">Directeur de l'Information et des Relations Publiques des Armées Sénégalaises</p>
-                    
-                    <div class="profile-stats">
-                        <div class="stat">
-                            <span class="stat-number">28</span>
-                            <span class="stat-label">Ans de Service</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">15</span>
-                            <span class="stat-label">Opérations</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">12</span>
-                            <span class="stat-label">Distinctions</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">3</span>
-                            <span class="stat-label">Langues</span>
-                        </div>
-                    </div>
+            <div class="filter-section">
+                <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary-color);">Filtrer par période</h3>
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all">Tous</button>
+                    <button class="filter-btn" data-filter="1993-2000">1993-2000</button>
+                    <button class="filter-btn" data-filter="2002-2016">2002-2016</button>
+                    <button class="filter-btn" data-filter="2017-2020">2017-2024</button>
+                    <button class="filter-btn" data-filter="2020-present">2020-Présent</button>
+                </div>
+            </div>
 
-                    <div class="profile-contact">
-                        <a href="#contact" class="contact-btn">
-                            <i class="fas fa-envelope"></i>
-                            Contacter le Directeur
-                        </a>
-                    </div>
-                </aside>
+            <!-- Timeline -->
+            <div class="timeline-header">
+                <h2 class="timeline-title">Ligne du Temps des Directeurs</h2>
+                <p class="timeline-subtitle">Parcourez l'histoire de la DIRPA à travers ses dirigeants successifs</p>
+            </div>
 
-                <!-- Contenu Biographique -->
-                <main class="biographie-main">
-                    <!-- Biographie -->
-                    <section class="section-tab animate-fade-in" style="animation-delay: 0.2s;">
-                        <h2 class="tab-title">Biographie</h2>
-                        <div class="biographie-text">
-                            <p>Le <strong>Capitaine de Vaisseau Ibrahima Sow</strong> incarne l'excellence et le dévouement au service 
-                            des Forces Armées Sénégalaises. , il a embrassé la carrière militaire 
-                            avec une passion remarquable pour la communication stratégique et les relations publiques.</p>
-
-                            <div class="highlight-box">
-                                <p>"La communication militaire n'est pas simplement un outil, c'est une stratégie d'influence 
-                                et de rayonnement au service de la nation et de ses valeurs fondamentales."</p>
-                                <cite>Capitaine de Vaisseau Ibrahima Sow</cite>
-                            </div>
-
-                            <p>Diplômé des ecoles Militaire , le Commendent Sow a rapidement 
-                            démontré des aptitudes exceptionnelles pour la communication institutionnelle. Son parcours 
-                            est marqué par une ascension méritée au sein de la hiérarchie militaire, ponctuée de 
-                            formations spécialisées .</p>
-                        </div>
-                    </section>
-
-                    <!-- Parcours Professionnel -->
-                    <section class="section-tab animate-fade-in" style="animation-delay: 0.4s;">
-                        <h2 class="tab-title">Parcours Professionnel</h2>
-                        <div class="parcours-timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-date">2024 - Présent</div>
-                                <div class="timeline-titre">Directeur de l'Information et des Relations Publiques des Armées</div>
-                                <div class="timeline-lieu">DIRPA, Dakar Plateau</div>
-                                <p>Nomination à la tête de la DIRPA avec pour mission de moderniser la communication 
-                                militaire et renforcer les relations avec les médias nationaux et internationaux.</p>
-                            </div>
-
-                            <div class="timeline-item">
-                                <div class="timeline-date">2020 - 2023</div>
-                                <div class="timeline-titre">Directeur Adjoint de la Communication Militaire</div>
-                                <div class="timeline-lieu">État-Major des Armées, Dakar</div>
-                                <p>Supervision des stratégies de communication opérationnelle et coordination des 
-                                activités médiatiques des différentes armées.</p>
-                            </div>
-
-                            <div class="timeline-item">
-                                <div class="timeline-date">2017 - 2020</div>
-                                <div class="timeline-titre">Chef de la Division Médias et Stratégies</div>
-                                <div class="timeline-lieu">DIRPA, Dakar</div>
-                                <p>Direction de l'équipe chargée des relations presse et de la production de contenu 
-                                stratégique pour les médias nationaux.</p>
-                            </div>
-
-                            <div class="timeline-item">
-                                <div class="timeline-date">2015 - 2017</div>
-                                <div class="timeline-titre">Conseiller en Communication du CEMGA</div>
-                                <div class="timeline-lieu">Cabinet du Chef d'État-Major Général des Armées</div>
-                                <p>Conseil stratégique en communication institutionnelle et gestion de l'image 
-                                du commandement des armées.</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Formations et Diplômes -->
-                    <section class="section-tab animate-fade-in" style="animation-delay: 0.6s;">
-                        <h2 class="tab-title">Formations et Diplômes</h2>
-                        <div class="realisations-grid">
-                            <div class="realisation-card">
-                                <div class="realisation-icon">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <h3 class="realisation-titre">Doctorat en Communication</h3>
-                                <p>Université Cheikh Anta Diop de Dakar - Spécialité Communication Stratégique et Institutionnelle</p>
-                            </div>
-
-                            <div class="realisation-card">
-                                <div class="realisation-icon">
-                                    <i class="fas fa-medal"></i>
-                                </div>
-                                <h3 class="realisation-titre">École de Guerre</h3>
-                                <p>École Militaire de  ......................</p>
-                            </div>
-
-                            <div class="realisation-card">
-                                <div class="realisation-icon">
-                                    <i class="fas fa-globe"></i>
-                                </div>
-                                <h3 class="realisation-titre">Master Relations Internationales</h3>
-                                <p>Institut des ............................</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Réalisations Majeures -->
-                    <section class="section-tab animate-fade-in" style="animation-delay: 0.8s;">
-                        <h2 class="tab-title">Réalisations Majeures</h2>
-                        <div class="biographie-text">
-                            <p>Sous la direction du commendent SOW, la DIRPA a connu des avancées significatives :</p>
-                            
-                            <ul style="line-height: 1.8; margin: 20px 0; padding-left: 20px;">
-                                <li><strong>Digitalisation complète</strong> des processus de communication</li>
-                                <li><strong>Modernisation</strong> du centre de production audiovisuelle</li>
-                                <li><strong>Renforcement</strong> des partenariats médiatiques internationaux</li>
-                                <li><strong>Création</strong> de l'observatoire des médias militaires</li>
-                            </ul>
-                        </div>
-
-                        <div class="citation-block">
-                            <p class="citation-text">"Notre mission dépasse la simple communication ; il s'agit de bâtir 
-                            des ponts de confiance entre les armées et la nation, entre le passé glorieux et l'avenir prometteur."</p>
-                            <div class="citation-auteur">Capitaine de Vaisseau Ibrahima Sow</div>
-                        </div>
-                    </section>
-
-                   
-
-                    <!-- Navigation entre pages -->
-                    <div class="page-navigation">
-                        <a href="pro3-sophistique.html" class="nav-btn">
-                            <i class="fas fa-arrow-left"></i>
-                            Retour à l'Accueil
-                        </a>
-                        <a href="anciens-directeurs.html" class="nav-btn next">
-                            Anciens Directeurs
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </main>
+            <div class="timeline" id="directorsTimeline">
+                <!-- Les directeurs seront ajoutés dynamiquement par JavaScript -->
             </div>
         </div>
     </section>
@@ -803,31 +445,33 @@
                         </div>
                     </div>
                     <p class="footer-description">
-                        Sous la direction du Capitaine de Vaisseau Ibrahima Sow, la DIRPA continue son œuvre 
-                        de communication au service de la nation.
+                        Héritiers d'une tradition d'excellence au service de la communication militaire.
                     </p>
                 </div>
 
                 <div class="footer-section">
-                    <h3 class="footer-title">Contact Directeur</h3>
-                    <div class="footer-contact">
-                        <p><i class="fas fa-envelope"></i> directeur@dirpa.sn</p>
-                        <p><i class="fas fa-phone"></i> +221 33 849 00 10</p>
-                        <p><i class="fas fa-clock"></i> Lundi-Vendredi: 8h-18h</p>
-                    </div>
+                    <h3 class="footer-title">Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="pro3-sophistique.html">Accueil</a></li>
+                        <li><a href="biographie-directeur.html">Directeur Actuel</a></li>
+                        <li><a href="anciens-directeurs.html">Anciens Directeurs</a></li>
+                        <li><a href="#">Historique</a></li>
+                    </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h3 class="footer-title">Secretariat</h3>
+                    <h3 class="footer-title">Contact Archives</h3>
                     <div class="footer-contact">
-                        <p><i class="fas fa-user-tie"></i>Adjudent Alioune Badara Diouf</p>
+                        <p><i class="fas fa-archive"></i> Service des Archives DIRPA</p>
+                        <p><i class="fas fa-phone"></i> +221 33 849 00 01</p>
+                        <p><i class="fas fa-envelope"></i> archives@dirpa.sn</p>
                     </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <p>&copy; 2025 DIRPA - Directeur de l'Information et des Relations Publiques des Armées . Excellence et Service.</p>
+                    <p>&copy; 2025 DIRPA - Direction de l'Information et des Relations Publiques des Armées. Héritage et Modernité.</p>
                 </div>
             </div>
         </div>
@@ -835,154 +479,355 @@
 
     <script src="pro3-sophistique.js"></script>
     <script>
-        class BiographieDirecteur {
+        // Données des anciens directeurs (à remplacer par les vraies données)
+        const anciensDirecteurs = [
+            {
+                id: 1,
+                nom: "Colone BABACAR GAYE",
+                grade: "Colonel",
+                periode: "01/10/1993-Au 01/10/1994",
+                annees:"1993",   
+                image: "MEDIA/cl babacar gaye.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "1993-2000",
+         
+            },
+             {
+                id: 2,
+                nom: "Colonel MAISSA TAMBA",
+                grade: "Colonel",
+                periode: "Du 10/10/1994 - Au 16/10/1999",
+                annees:"1994",   
+                image: "MEDIA/cl meissa tamba.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "1993-2000",
+         
+            },
+             {
+                id: 3,
+                nom: "Colonel ABDOUL S.NIANE",
+                grade: "Colonel",
+                periode: "Du 16/10/1999 - Au 16/05/2000",
+                annees:"1999",   
+                image: "MEDIA/cl abdoul s niane.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "1993-2000",
+         
+            },
+            {
+                id: 4,
+                nom: "Colonel ABDOULKARINE DIEYE",
+                grade: "Colonel",
+                periode: "Du 16/05/2000 - Au 14/06/2002",
+                annees:"2000",   
+                image: "MEDIA/cl aboubakrine dieye.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "1999-2000",
+         
+            },
+            {
+                id: 5,
+                nom: "Colonel BALLA KEITA",
+                grade: "Colonel",
+                periode: "Du 14/06/2002 - Au 01/10/2003",
+                annees:"2002",   
+                image: "MEDIA/cl bala keita.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "2002-2016",
+         
+            },
+            {
+                id: 6,
+                nom: "Colonel BIRAMA THIOUNE",
+                grade: "Colonel",
+                periode: "Du 01/10/2003 - Au 16/12/2004",
+                annees:"2003",   
+                image: "MEDIA/birama tioune.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "2002-2016",
+         
+            },
+            {
+                id: 7,
+                nom: "Colonel ANTOINE WARDINI",
+                grade: "Colonel",
+                periode: "Du 16/12/2004 - Au 14/06/2007",
+                annees:"2004",   
+                image: "MEDIA/cl antoine wardini.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "2002-2016",
+         
+            },
+            {
+                id: 8,
+                nom: "Colonel OUSMANE SARR",
+                grade: "Colonel",
+                periode: "Du 15/06/2007 - Au 30/09/2010",
+                annees:"2007",   
+                image: "MEDIA/cl oussmane sar.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "2002-2016",
+         
+            },
+            {
+                id: 9,
+                nom: "Colonel ABDOURAHIM KEBE",
+                grade: "Colonel",
+                periode: "Du 01/10/2010 - Au 31/12/2012",
+                annees:"2010",   
+                image: "MEDIA/cl abdourahim kebe.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "2002-2016",
+         
+            },
+            {
+                id: 10,
+                nom: "Colonel ABOU THIAME",
+                grade: "Colonel",
+                periode: "Du 01/01/2013 - Au 17/07/2016",
+                annees:"2013",   
+                image: "MEDIA/cl abou thiam.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "2020-present",
+         
+            },
+             {
+                id: 11,
+                nom: "Colonel ABDOUL NDIAYE",
+                grade: "Colonel",
+                periode: "Du 16/07/2016 - Au 31/12/2019",
+                annees:"2016",   
+                image: "MEDIA/cl abdoul ndiaye.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "2020-present",
+         
+            },
+             {
+                id: 12,
+                nom: "Colonel MACTAR DIOP",
+                grade: "Colonel",
+                periode: "Du 01/01/2020 - Au 31/12/2021",
+                annees:"2020",   
+                image: "MEDIA/cl mactar diop.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "2020-present",
+         
+            },
+            {
+                id: 13,
+                nom: "Colonel Alexis Grégoire Vasse",
+                grade: "Colonel",
+                periode: "Du 01/01/2022 - Au 01/07/2022",
+                annees:"2022",   
+                image: "MEDIA/cl alexis gergoire vasse.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "2020-present",
+         
+            },
+            {
+                id: 15,
+                nom: "Colonel MOUSSA KOULIBALY",
+                grade: "Colonel",
+                periode: "Du 01/07/2022 - Au 01/08/2024",
+                annees:"2023",   
+                image: "MEDIA/cl moussa coulibaly.jpg",
+                bio: "Pionnier de la modernisation des systèmes de communication militaire. A introduit les technologies numériques dans les processus de communication.",
+                 realisations: [
+                ],
+                filter: "2020-present",
+         
+            },
+
+            
+        ];
+
+        class AnciensDirecteursPage {
             constructor() {
+                this.directeurs = anciensDirecteurs;
                 this.init();
             }
 
             init() {
+                this.renderTimeline();
+                this.setupFilters();
+                this.setupSearch();
                 this.setupAnimations();
-                this.setupGallery();
-                this.setupContactForm();
-                this.setupScrollEffects();
+            }
+
+            renderTimeline() {
+                const timeline = document.getElementById('directorsTimeline');
+                timeline.innerHTML = '';
+
+                this.directeurs.sort((a, b) => parseInt(b.annees.split('-')[0]) - parseInt(a.annees.split('-')[0]));
+
+                this.directeurs.forEach((directeur, index) => {
+                    const timelineItem = this.createTimelineItem(directeur, index);
+                    timeline.appendChild(timelineItem);
+                });
+            }
+
+            createTimelineItem(directeur, index) {
+                const item = document.createElement('div');
+                item.className = `timeline-item ${index % 2 === 0 ? 'left' : 'right'}`;
+                item.setAttribute('data-filter', directeur.filter);
+
+                item.innerHTML = `
+                    <div class="timeline-year">${directeur.annees.split('-')[0]}</div>
+                    <div class="timeline-content">
+                        <img src="${directeur.image}" alt="${directeur.nom}" class="director-image" 
+                             onerror="this.src='MEDIA/placeholder-director.jpg'">
+                        <h3 class="director-name">${directeur.nom}</h3>
+                        <div class="director-grade">${directeur.grade}</div>
+                        <span class="director-period">${directeur.periode}</span>
+                        <p class="director-bio">${directeur.bio}</p>
+                        
+                        
+                        
+                        <button class="card-link" onclick="this.viewDirectorDetails(${directeur.id})">
+                            Voir la biographie complète
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                `;
+
+                return item;
+            }
+
+            setupFilters() {
+                const filterBtns = document.querySelectorAll('.filter-btn');
+                
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        // Retirer la classe active de tous les boutons
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        // Ajouter la classe active au bouton cliqué
+                        btn.classList.add('active');
+                        
+                        const filter = btn.getAttribute('data-filter');
+                        this.filterDirectors(filter);
+                    });
+                });
+            }
+
+            filterDirectors(filter) {
+                const items = document.querySelectorAll('.timeline-item');
+                
+                items.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-filter') === filter) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.classList.add('fade-in');
+                        }, 100);
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.remove('fade-in');
+                    }
+                });
+            }
+
+            setupSearch() {
+                const searchInput = document.querySelector('.search-input');
+                searchInput.addEventListener('input', this.debounce((e) => {
+                    this.searchDirectors(e.target.value);
+                }, 300));
+            }
+
+            searchDirectors(query) {
+                const items = document.querySelectorAll('.timeline-item');
+                
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(query.toLowerCase())) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    item.classList.remove('fade-in');
+                    }
+                });
+            }
+
+            debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
             }
 
             setupAnimations() {
-                // Animation des statistiques
-                const stats = document.querySelectorAll('.stat-number');
-                const observer = new IntersectionObserver((entries) => {
+                // Animation des compteurs
+                const counters = document.querySelectorAll('.counter');
+                const counterObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            this.animateStat(entry.target);
-                            observer.unobserve(entry.target);
+                            this.animateCounter(entry.target);
+                            counterObserver.unobserve(entry.target);
                         }
                     });
                 }, { threshold: 0.5 });
 
-                stats.forEach(stat => observer.observe(stat));
+                counters.forEach(counter => counterObserver.observe(counter));
             }
 
-            animateStat(statElement) {
-                const target = parseInt(statElement.textContent);
-                let current = 0;
+            animateCounter(counter) {
+                const target = parseInt(counter.getAttribute('data-target'));
                 const duration = 2000;
-                const increment = target / (duration / 16);
+                const step = target / (duration / 16);
+                let current = 0;
 
                 const timer = setInterval(() => {
-                    current += increment;
+                    current += step;
                     if (current >= target) {
-                        statElement.textContent = target;
+                        counter.textContent = target;
                         clearInterval(timer);
                     } else {
-                        statElement.textContent = Math.floor(current);
+                        counter.textContent = Math.floor(current);
                     }
                 }, 16);
             }
 
-            setupGallery() {
-                const mediaItems = document.querySelectorAll('.media-item');
-                
-                mediaItems.forEach(item => {
-                    item.addEventListener('click', () => {
-                        this.openLightbox(item.querySelector('img').src);
-                    });
-                });
-            }
-
-            openLightbox(imageSrc) {
-                // Créer une lightbox simple
-                const lightbox = document.createElement('div');
-                lightbox.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0,0,0,0.9);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 10000;
-                    cursor: pointer;
-                `;
-                
-                const img = document.createElement('img');
-                img.src = imageSrc;
-                img.style.cssText = `
-                    max-width: 90%;
-                    max-height: 90%;
-                    object-fit: contain;
-                    border-radius: 10px;
-                `;
-                
-                lightbox.appendChild(img);
-                lightbox.addEventListener('click', () => lightbox.remove());
-                document.body.appendChild(lightbox);
-            }
-
-            setupContactForm() {
-                const contactBtn = document.querySelector('.contact-btn');
-                contactBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    this.showContactModal();
-                });
-            }
-
-            showContactModal() {
-                const modal = document.createElement('div');
-                modal.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0,0,0,0.8);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 10000;
-                `;
-                
-                modal.innerHTML = `
-                    <div style="background: white; padding: 40px; border-radius: 15px; max-width: 500px; width: 90%;">
-                        <h3 style="color: var(--primary-color); margin-bottom: 20px;">Contacter le Directeur</h3>
-                        <p style="margin-bottom: 20px;">Pour toute demande officielle, veuillez utiliser les canaux de communication institutionnels.</p>
-                        
-                        <div style="background: var(--background-color); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-                            <p><strong>📧 Email:</strong> directeur@dirpa.sn</p>
-                            <p><strong>📞 Téléphone:</strong> +221 33 849 00 10</p>
-                            <p><strong>🏢 Adresse:</strong> Cabinet du Directeur, DIRPA, Dakar Plateau</p>
-                        </div>
-                        
-                        <button onclick="this.parentElement.parentElement.remove()" 
-                                style="background: var(--primary-color); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
-                            Fermer
-                        </button>
-                    </div>
-                `;
-                
-                modal.addEventListener('click', (e) => {
-                    if (e.target === modal) modal.remove();
-                });
-                
-                document.body.appendChild(modal);
-            }
-
-            setupScrollEffects() {
-                // Effet de parallaxe sur l'hero section
-                window.addEventListener('scroll', () => {
-                    const scrolled = window.pageYOffset;
-                    const hero = document.querySelector('.biographie-hero');
-                    if (hero) {
-                        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                    }
-                });
+            viewDirectorDetails(directeurId) {
+                const directeur = this.directeurs.find(d => d.id === directeurId);
+                if (directeur) {
+                    // Ici vous pouvez rediriger vers une page de détail ou ouvrir un modal
+                    alert(`Détails de ${directeur.nom}\n\nCette fonctionnalité ouvrira une page détaillée avec la biographie complète.`);
+                }
             }
         }
 
-        // Initialiser la page
+        // Initialiser la page quand le DOM est chargé
         document.addEventListener('DOMContentLoaded', () => {
-            new BiographieDirecteur();
+            new AnciensDirecteursPage();
         });
     </script>
 </body>
