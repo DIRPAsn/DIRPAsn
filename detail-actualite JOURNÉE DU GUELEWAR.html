@@ -1,0 +1,816 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détail Actualité - Site Actualités</title>
+    <link rel="icon" type="image/png" href="MEDIA/p2.jpg">
+    <style>
+        /* Variables CSS */
+        :root {
+            --live-indicator-shadow: hsla(0, 79%, 63%, .5);
+            --rich-blank-fogra-30: hsl(240, 30%, 28%);
+            --rich-blank-fogra-29: hsla(217, 15%, 53%, 0.717);;
+            --live-indicator: hsl(0, 79%, 63%);
+            --oxford-blue-50: hsla(219, 30%, 21%, 0.8);
+            --oxford-blue: hsl(218, 39%, 14%);
+            --light-azure: hsl(214, 84%, 56%);
+            --off-white: hsl(270, 25%, 98%);
+            --yellow: hsla(51, 88%, 60%, 0.845);
+            --white: hsla(251, 87%, 43%, 0.737);
+            --azure: hsl(211, 100%, 50%);
+            --font-family: "Inter", sans-serif;
+            --section-heading: 40px;
+            --font-size-large: 22px;
+            --font-size-medium: 17px;
+            --font-size-small: 14px;
+            --font-size-extra-small: 12px;
+            --fw7: 700;
+            --fw6: 600;
+            --fw5: 500;
+            --padding-x: 120px;
+        }
+
+        /* Reset de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: var(--rich-blank-fogra-29);
+            color: var(--off-white);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+
+        /* HEADER SIMPLIFIÉ */
+        header {
+            background: var(--rich-blank-fogra-29);
+            padding: 0 var(--padding-x);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--oxford-blue);
+        }
+
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .navbar-link {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: var(--font-size-small);
+        }
+
+        .navbar-link:hover {
+            color: var(--light-azure);
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar-signin {
+            background: var(--light-azure);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: var(--font-size-small);
+        }
+
+        /* STYLES SPÉCIFIQUES À LA PAGE DÉTAIL */
+        .news-detail {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .news-header {
+            margin-bottom: 40px;
+        }
+
+        .news-title {
+            font-size: 2.5em;
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .news-meta {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--off-white);
+            font-size: var(--font-size-small);
+        }
+
+        .meta-item ion-icon {
+            color: var(--light-azure);
+        }
+
+        /* DIAPORAMA */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: 40px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .slideshow {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px;
+            font-size: var(--font-size-small);
+        }
+
+        /* CONTRÔLES DU DIAPORAMA */
+        .slideshow-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slideshow-btn {
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slideshow-btn:hover {
+            background: var(--light-azure);
+            transform: scale(1.1);
+        }
+
+        .slideshow-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--light-azure);
+            transform: scale(1.2);
+        }
+
+        /* CONTENU DE L'ARTICLE */
+        .news-content {
+            background: var(--oxford-blue);
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            line-height: 1.8;
+        }
+
+        .news-content h2 {
+            color: var(--light-azure);
+            margin: 30px 0 15px 0;
+            font-size: 1.8em;
+        }
+
+        .news-content h3 {
+            color: var(--white);
+            margin: 25px 0 12px 0;
+            font-size: 1.4em;
+        }
+
+        .news-content p {
+            margin-bottom: 20px;
+            color: var(--off-white);
+            font-size: var(--font-size-medium);
+        }
+
+        .news-content blockquote {
+            border-left: 4px solid var(--light-azure);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: var(--off-white);
+        }
+
+        /* TAGS ET PARTAGE */
+        .news-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .news-tag {
+            background: var(--light-azure);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: var(--font-size-extra-small);
+            font-weight: var(--fw5);
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--rich-blank-fogra-30);
+            border-radius: 25px;
+            color: var(--off-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .share-btn:hover {
+            background: var(--light-azure);
+            transform: translateY(-2px);
+        }
+
+        /* ARTICLES SIMILAIRES */
+        .related-news {
+            margin-top: 60px;
+        }
+
+        .section-heading {
+            font-size: var(--section-heading);
+            font-weight: var(--fw5);
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .movie-card {
+            background: var(--oxford-blue);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .card-head {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: var(--font-size-medium);
+            font-weight: var(--fw5);
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--font-size-extra-small);
+            color: var(--off-white);
+        }
+
+        .genre {
+            background: var(--light-azure);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--rich-blank-fogra-30);
+            padding: 60px var(--padding-x) 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid var(--oxford-blue-50);
+            padding-bottom: 50px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        .slogan {
+            font-size: var(--font-size-small);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link a {
+            color: var(--off-white);
+            font-size: 20px;
+        }
+
+        .footer-links {
+            flex: 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .link-heading {
+            font-size: var(--font-size-medium);
+            font-weight: var(--fw6);
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .link-item {
+            margin-bottom: 10px;
+        }
+
+        .link-item a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-size: var(--font-size-small);
+        }
+
+        .link-item a:hover {
+            color: var(--light-azure);
+        }
+
+        .footer-copyright {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright p {
+            font-size: var(--font-size-small);
+            color: var(--off-white);
+        }
+
+        .wrapper {
+            display: flex;
+            gap: 30px;
+        }
+
+        .wrapper a {
+            font-size: var(--font-size-small);
+            color: var(--off-white);
+            text-decoration: none;
+        }
+
+        .wrapper a:hover {
+            color: var(--light-azure);
+        }
+
+        /* RESPONSIVE */
+        @media screen and (max-width: 768px) {
+            :root {
+                --padding-x: 20px;
+            }
+
+            .news-title {
+                font-size: 2em;
+            }
+
+            .slideshow {
+                height: 300px;
+            }
+
+            .news-content {
+                padding: 25px;
+            }
+
+            .news-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .slideshow-controls {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .slideshow-dots {
+                bottom: 10px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-nav {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .news-title {
+                font-size: 1.6em;
+            }
+
+            .slideshow {
+                height: 250px;
+            }
+
+            .news-content {
+                padding: 20px;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+            }
+
+            .footer-copyright {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .wrapper {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="navbar-brand">
+                <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="logo">
+            </a>
+
+            <nav>
+                <ul class="navbar-nav">
+                    <li><a href="index.html" class="navbar-link">Accueil</a></li>
+                    <li><a href="#" class="navbar-link">À propos</a></li>
+                    <li><a href="#" class="navbar-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            
+        </header>
+
+        <main>
+            <section class="news-detail">
+                <div class="news-header">
+                    <h1 class="news-title">L’ARMÉE DE TERRE INSTAURE LA JOURNÉE DU GUELEWAR</h1>
+                    
+                    <div class="news-meta">
+                        <div class="meta-item">
+                            <ion-icon name="calendar"></ion-icon>
+                            <span>Publié le 03 Octobre 2025</span>
+                        </div>
+                         
+                        <div class="meta-item">
+                            <ion-icon name="person"></ion-icon>
+                            <span>Par la Rédaction</span>
+                        </div>
+                         
+                    </div>
+
+                    <!-- Diaporama -->
+                    <div class="slideshow-container">
+                        <div class="slideshow">
+                            <div class="slide active">
+                                <img src="MEDIA/JOURNÉE DU GUELEWAR.jpg" alt="Visite du Général Mbaye Cissé - Photo 1">
+                                <div class="slide-caption"> JOURNÉE DU GUELEWAR3</div>
+                            </div>
+                            <div class="slide">
+                                <img src="MEDIA/JOURNÉE DU GUELEWAR2.jpg" alt="Visite du Général Mbaye Cissé - Photo 2">
+                                <div class="slide-caption"> JOURNÉE DU GUELEWAR3</div>
+                            </div>
+                            <div class="slide">
+                                <img src="MEDIA/JOURNÉE DU GUELEWAR3.jpg" alt="Visite du Général Mbaye Cissé - Photo 3">
+                                <div class="slide-caption">JOURNÉE DU GUELEWAR3</div>
+                            </div>
+                        </div>
+
+                        <div class="slideshow-controls">
+                            <button class="slideshow-btn prev-btn">
+                                <ion-icon name="chevron-back"></ion-icon>
+                            </button>
+                            <button class="slideshow-btn next-btn">
+                                <ion-icon name="chevron-forward"></ion-icon>
+                            </button>
+                        </div>
+
+                        <div class="slideshow-dots">
+                            <div class="dot active" data-slide="0"></div>
+                            <div class="dot" data-slide="1"></div>
+                            <div class="dot" data-slide="2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-content">
+                    <h2>L’ARMÉE DE TERRE INSTAURE LA JOURNÉE DU GUELEWAR</h2>
+                    <p>L’Armée de terre a célébré aujourd’hui 3 0ctobre la première édition de la journée du GUELEWAR.
+La journée du terrien, désormais fixée au premier vendredi du mois d’octobre, vise à rendre hommage aux morts, renforcer la cohésion au sein des formations et mettre en exergue la fierté d’appartenir à l’Armée de terre.
+Elle a été célébrée par tous les bataillons sur l’étendue du territoire national par des cérémonies aux couleurs élargies aux anciens, des activités sportives et des repas de cohésion. INSTRUIRE, ENTRAÎNER, VAINCRE.
+Bonne fête aux terriens !</p>
+                     
+                    <div class="news-tags">
+                        <span class="news-tag">Armée</span>
+                        <span class="news-tag">Sécurité</span>
+                        <span class="news-tag">Infrastructures</span>
+                        <span class="news-tag">Défense Nationale</span>
+                        <span class="news-tag">Zone Militaire</span>
+                    </div>
+
+                    <div class="share-buttons">
+                        <a href="#" class="share-btn">
+                            <ion-icon name="logo-facebook"></ion-icon>
+                            Partager
+                        </a>
+                        <a href="#" class="share-btn">
+                            <ion-icon name="logo-twitter"></ion-icon>
+                            Tweeter
+                        </a>
+                        <a href="#" class="share-btn">
+                            <ion-icon name="link"></ion-icon>
+                            Copier le lien
+                        </a>
+                    </div>
+                </div>
+
+                <div class="related-news">
+                    <h2 class="section-heading">Actualités Similaires</h2>
+                    <div class="related-grid">
+                        <div class="movie-card" onclick="window.location.href='detail-actualite MISSION DE SOUTIEN DES MILITAIRES.html'">
+                            <div class="card-head">
+                                <img src="MEDIA/SOUTIEN DES MILITAIRES.jpg" alt="Actualité Similaire 1" class="card-img">
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">MISSION DE SOUTIEN DES MILITAIRES AUX ÉQUIPES DE LA SENELEC</h3>
+                                <div class="card-info">
+                                    <span class="genre">SOUTIEN</span>
+                                    <span class="year">03/10/2025</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="movie-card" onclick="window.location.href='detail-actualite TRAVERSÉE DAKAR-GORÉE 2025 – 36e ÉDITION.html'">
+                            <div class="card-head">
+                                <img src="MEDIA/TRAVERSÉE DAKAR-GORÉE 2025.jpg" alt="Actualité Similaire 2" class="card-img">
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">TRAVERSÉE DAKAR-GORÉE 2025 – 36e ÉDITION</h3>
+                                <div class="card-info">
+                                    <span class="genre">COMPETITION</span>
+                                    <span class="year">29/09/2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="MEDIA/LOGODIRPA_3798 copie.png" alt="Logo" class="footer-logo">
+                    <p class="slogan">Site d'actualités et d'informations</p>
+                    <div class="social-link">
+                        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <ul>
+                        <h4 class="link-heading">Notre Site</h4>
+                        <li class="link-item"><a href="index.html">Accueil</a></li>
+                        <li class="link-item"><a href=" #">À propos</a></li>
+                        <li class="link-item"><a href="#contact">Contact</a></li>
+                    </ul>
+                    
+                    <ul>
+                        <h4 class="link-heading">Sections</h4>
+                        <li class="link-item"><a href="directeur.html">Directeur</a></li>
+                        <li class="link-item"><a href="reportages.html">Reportages</a></li>
+                        <li class="link-item"><a href="videos.html">Vidéos</a></li>
+                    </ul>
+                    
+                    <ul>
+                        <h4 class="link-heading">Aide</h4>
+                        <li class="link-item"><a href="#">Support</a></li>
+                        <li class="link-item"><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-copyright">
+                <div class="copyright">
+                    <p>&copy; Copyright 2024 - Tous droits réservés</p>
+                </div>
+                <div class="wrapper">
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">Conditions d'utilisation</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        // JavaScript pour le diaporama
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentSlide = 0;
+            let autoPlayInterval;
+
+            function showSlide(index) {
+                // Masquer toutes les slides
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Afficher la slide courante
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                let nextIndex = currentSlide + 1;
+                if (nextIndex >= slides.length) {
+                    nextIndex = 0;
+                }
+                showSlide(nextIndex);
+            }
+
+            function prevSlide() {
+                let prevIndex = currentSlide - 1;
+                if (prevIndex < 0) {
+                    prevIndex = slides.length - 1;
+                }
+                showSlide(prevIndex);
+            }
+
+            // Événements des boutons
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+
+            // Événements des dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => showSlide(index));
+            });
+
+            // Lecture automatique
+            function startAutoPlay() {
+                autoPlayInterval = setInterval(nextSlide, 5000);
+            }
+
+            function stopAutoPlay() {
+                clearInterval(autoPlayInterval);
+            }
+
+            // Pause au survol
+            const slideshow = document.querySelector('.slideshow-container');
+            slideshow.addEventListener('mouseenter', stopAutoPlay);
+            slideshow.addEventListener('mouseleave', startAutoPlay);
+
+            // Démarrer l'autoplay
+            startAutoPlay();
+
+            // Rendre les cartes similaires cliquables
+            const relatedCards = document.querySelectorAll('.movie-card');
+            relatedCards.forEach(card => {
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', function() {
+                    const onclickAttr = this.getAttribute('onclick');
+                    if (onclickAttr) {
+                        const url = onclickAttr.match(/'([^']+)'/)[1];
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
